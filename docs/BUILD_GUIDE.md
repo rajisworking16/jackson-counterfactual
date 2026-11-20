@@ -16,15 +16,16 @@
 | Phase | Status |
 |---|---|
 | 0. Setup | ✅ Done |
-| 1. Research dossier | ✅ Built, awaiting Pranav's row-by-row review (31 events, 9 siblings, anchors doc). Phase 2 waits for that review |
-| 2. Data model | ⬜ Not started |
+| 1. Research dossier | ✅ Built + review fixes applied (33 events, 9 siblings with comparable markers, anchors doc). Awaiting Pranav's final check |
+| 2. Data model | ⬜ Not started. Waits for Pranav's go-ahead |
 | 3. Simulation engine | ⬜ Not started |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 1: review fixes - dates, body-image evidence, sibling markers   (this commit)
+Update CURRENT STATUS after Phase 1 review fixes   (this commit)
+6528744 Phase 1: review fixes - dates, body-image evidence, sibling markers
 aeb161b Phase 1: research anchors doc (Gershoff, ACE, child-performer literature, sibling method)
 3fb2c34 Phase 1: sibling control group filled (9 siblings, sourced)
 e388b6f Phase 1: extend timeline batch 2 (verified events to 30-40 rows)
@@ -37,11 +38,24 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 3b1af32 Phase 0: project scaffold - data schemas, starter datasets, notebooks
 ```
 
-**Decisions made (2026-11-19):** `self_report` column; `dial_links` (short dial names from `dials.csv` `short_name`) split from `outcome_links`; `url` column; M15 Trauma -> Relationships added in Phase 2 (29 parameter rows); age-check cell left for Pranav. The spine commit message drops "age check added" because the cell is still his to write.
+**Review fixes (2026-11-20, commit 6528744):**
+- 1971: now the debut single, Oct 7, 1971. That date appears only on Wikipedia, with no citation, so the row stays Medium.
+- 1984: eight Grammys on Feb 28, 1984 (grammy.com, Guinness).
+- Body-image evidence: added from TIME 1993 (Medium, self_report yes).
+- `year_approx` column: yes on the 1964 row only.
+- 1988 split into the Moonwalk quotes (now with the belt quote) and the land purchase.
+- Siblings: new columns career_start / career_end / career_span_years / span_approx / self_direction_age / self_direction_basis / spoke_about_joseph / statement_direction.
 
-**Next step:** HARD STOP 1. Pranav reviews every life_events and sibling row against its URL. Then Phase 2 (Step 2.1), starting with the six unbacked RESEARCH labels listed at the end of docs/research_anchors.md.
+**Decisions made (2026-11-19):** `self_report`, `dial_links` / `outcome_links` split, `url`; M15 Trauma -> Relationships goes in with Phase 2 (29 parameter rows); the age-check cell is Pranav's.
 
-**Hard stops in the end-to-end run:** end of Phase 1 (row-by-row review), Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
+**Open before Phase 2:**
+- Six RESEARCH labels (P02, P07, P09, M06, M07, M10) have no source read yet. Each needs a source or a switch to ASSUMPTION.
+- Jermaine's 2011 memoir hasn't been read.
+- Janet's self-direction year isn't in any source fetched.
+
+**Next step:** STOP. Pranav checks the review fixes, then Phase 2 (Step 2.1).
+
+**Hard stops still ahead:** Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
 **Every session starts with** (in Claude Code, CLAUDE.md tells it to run these checks itself):
 ```bash
