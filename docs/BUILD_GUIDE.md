@@ -20,11 +20,12 @@
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
 | 3. Simulation engine | ✅ Done, calibration frozen (seeded engine, 10,000 runs; M12, bins, display rule, per-run baselines; censored sibling check) |
 | 4. Dashboard | ✅ Done (3 pages, 16 tests, screenshots; label and config fixes) |
-| 5. Write-up + ship | ⬜ Next: Step 5.1 (README) |
+| 5. Write-up + ship | 🟡 In progress. Step 5.1 ✅ README. Next: Step 5.3 (portfolio copy); Step 5.2 waits for real readers |
 
 **Commits (newest first):**
 ```
-Phase 4: label and config fixes   (this commit)
+Phase 5: README - method, findings, limitations, run instructions   (this commit)
+46fd9f2 Phase 4: label and config fixes
 f9f5c54 Phase 4: dashboard polish + screenshots
 bc7c31d Phase 4: dashboard page 3 - assumptions register, sources, limitations
 5cbe745 Phase 4: dashboard page 2 - dials, branch cards, outcome bands
@@ -72,7 +73,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** Step 5.1 README, then Step 5.3 portfolio copy. Stop before Step 5.2 (real readers).
+**Next step:** Step 5.3 portfolio copy, then STOP before Step 5.2.
 
 **Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -741,7 +742,7 @@ git commit -m "Phase 4: dashboard polish + screenshots"
 **Goal:** a README an interviewer can read in 4 minutes, a portfolio card, one LinkedIn post.
 **Session prompt:** "Help me write the project README and portfolio blurb: method first, findings second, limitations stated plainly, no certainty claims about an alternate life."
 
-## Step 5.1 - The README (create it; the repo has none yet)
+## Step 5.1 - The README (create it; the repo has none yet) ✅ DONE (2026-11-20)
 
 Structure, in this order:
 1. **Title + one-line pitch** (from the spec: "Counterfactual scenario modeling, applied to the most documented childhood in pop history…")
