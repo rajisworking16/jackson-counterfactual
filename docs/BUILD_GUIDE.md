@@ -16,7 +16,7 @@
 | Phase | Status |
 |---|---|
 | 0. Setup | ✅ Done |
-| 1. Research dossier | 🟡 In progress. Step 1.1 ✅ (12 of 12 spine rows sourced). Next: Step 1.2 |
+| 1. Research dossier | 🟡 In progress. Step 1.1 ✅. Step 1.2: batch 1 done (20 rows) |
 | 2. Data model | ⬜ Not started |
 | 3. Simulation engine | ⬜ Not started |
 | 4. Dashboard | ⬜ Not started |
@@ -24,7 +24,8 @@
 
 **Commits (newest first):**
 ```
-Phase 1: spine complete - 12 rows sourced   (this commit)
+Phase 1: extend timeline batch 1 (verified events to ~20 rows)   (this commit)
+e5a8a6c Phase 1: spine complete - 12 rows sourced
 a2fdac8 Phase 1: add self_report flag, split dial_links / outcome_links
 c15dbf3 Phase 1: source 1979, 1984, 1993 rows
 6979ea9 Add CLAUDE.md and build guide for Claude Code sessions
@@ -34,7 +35,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 
 **Decisions made (2026-11-19):** `self_report` column; `dial_links` (short dial names from `dials.csv` `short_name`) split from `outcome_links`; `url` column; M15 Trauma -> Relationships added in Phase 2 (29 parameter rows); age-check cell left for Pranav. The spine commit message drops "age check added" because the cell is still his to write.
 
-**Next step:** Step 1.2, extend the timeline to 30-40 rows in two batches.
+**Next step:** Step 1.2 batch 2 (to 30-40 rows).
 
 **Hard stops in the end-to-end run:** end of Phase 1 (row-by-row review), Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
