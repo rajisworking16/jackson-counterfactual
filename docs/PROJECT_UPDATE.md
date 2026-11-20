@@ -6,7 +6,7 @@ A Monte Carlo scenario model that changes one input in Michael Jackson's documen
 
 ## Where it stands
 
-**15 of 22 build steps done.** Phases 0 to 3 are complete. Phase 3 closes with "Phase 3: center longevity baseline, freeze calibration": the longevity baseline is centered on 7.0 and **calibration is frozen**. Phase 4 (the dashboard) is next.
+**19 of 22 build steps done.** Phases 0 to 3 are complete. Phases 0 to 4 are complete: the engine is calibrated and frozen, and the three-page Streamlit dashboard is built, tested and screenshotted. Phase 5 (README, sensitivity read, portfolio copy) is next.
 
 | Phase | Status | Progress |
 |---|---|---|
@@ -14,8 +14,8 @@ A Monte Carlo scenario model that changes one input in Michael Jackson's documen
 | 1. Research dossier | ✅ Done | 4 of 4 steps |
 | 2. Data model | ✅ Done | 3 of 3 steps + review fixes |
 | 3. Simulation engine | ✅ Done | 6 of 6 steps; calibration frozen |
-| 4. Dashboard | ⬜ Next | 0 of 4 steps |
-| 5. Write-up + ship | ⬜ Not started | 0 of 3 steps |
+| 4. Dashboard | ✅ Done | 4 of 4 steps, 16 tests passing |
+| 5. Write-up + ship | ⬜ Next | 0 of 3 steps |
 
 ## Phase 3: what was built
 
@@ -137,15 +137,31 @@ The fixed numbers (baselines, intercepts, branch logistic, stage decay, bins) ar
 - Jermaine's 2011 memoir hasn't been read.
 - The age-check cell in `notebooks/01_research_dossier.ipynb` is Pranav's.
 
-## Next: Phase 4, the Streamlit dashboard
+## Phase 4: the dashboard
 
-1. **Page 1:** the documented timeline.
-2. **Page 2:** dials, branch cards and outcome bands.
-   - Longevity appears only as band probabilities, through `format_prob`.
-   - "Not a prediction" goes under every chart.
-   - **Saturation rule:** wherever a band has more than 20% of runs at exactly 0 or 10, it shows "score saturated under these assumptions" (`saturation()`). Today that applies to Actual's mental health: 24.9% of runs at 0 in Childhood, 55.1% by Later.
-3. **Page 3:** the assumptions register: 29 links, the fixed numbers, a calibration summary, limitations and the scope statement.
-4. **Run, screenshot, polish.**
+[app/streamlit_app.py](../app/streamlit_app.py) has three pages, all text and charts, with no photos or logos, in the default Streamlit theme. Run it with `streamlit run app/streamlit_app.py`; `?page=2` opens a page directly.
+
+| Page | What it shows |
+|---|---|
+| 1. Documented timeline | Plotly scatter of all 33 events (year × age), colored by the dial each evidences. Distinct symbols mark self-report and approximate-year rows. Hover shows the event, source and confidence. Pitch, scope statement and "Documented events only, no model output." at the top. The 2009 row is plain |
+| 2. Dials and results | A preset selector and 6 sliders. Under each slider, how many timeline rows evidence it; Body-image comments is flagged as the least-supported input with a large effect (1 row). Branch cards, outcome bands (median with p10-p90 whiskers, by stage), and longevity as a band table, all through `format_prob`. The saturation note where more than 20% of runs sit at 0 or 10 (today: Actual's mental health). "Not a prediction" under every chart. Live at 2,000 runs, cached by dial values; published results use 10,000 |
+| 3. Assumptions register | Scope first; all 29 links, filterable by basis; the fixed numbers (read from mechanism_map.md); the calibration summary; limitations, with the failed age-50 check and the living-sibling check first; the 2009 outcome in one sober sentence; sources |
+
+**Tests** ([tests/test_app.py](../tests/test_app.py), `python -m pytest tests/`): **16 passing**. They cover:
+- every page loading without an exception, and the scope statement on pages 1 and 3
+- slider and preset changes moving the branch cards
+- no "0%" or "100%" anywhere in rendered text, including with every dial at 0 and every dial at 10
+- the saturation note, the not-a-prediction line under every page 2 chart, longevity as bands only, and no death wording on page 2
+
+**Speed:** in a real browser, a slider change updates the cards in about **0.25 s**.
+
+**Screenshots:** [docs/screenshots/](screenshots/) has all three pages on desktop, and pages 1 and 2 at phone width (390 px, no horizontal scroll).
+
+## Next: Phase 5, write-up and ship
+
+1. **README.** Method first, findings second as bands, limitations stated plainly, how to run it, sources, screenshots.
+2. **Sensitivity read (hard stop).** Two to three real readers; not simulated.
+3. **Portfolio card, resume bullet and LinkedIn draft** in `docs/portfolio_copy.md`. The resume bullet is labeled "add only once live". The v1.0 tag and repo visibility are Pranav's.
 
 ## Scope
 

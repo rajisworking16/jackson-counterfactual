@@ -52,6 +52,7 @@ source .venv/bin/activate              # every session
 git status                             # check for uncommitted work first
 python model/simulate.py               # Phase 3+: seeded, 10,000 runs
 streamlit run app/streamlit_app.py     # Phase 4+
+python -m pytest tests/                # dashboard tests (pip install -r requirements-dev.txt)
 ```
 
 ## Layout

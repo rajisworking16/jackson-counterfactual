@@ -201,7 +201,7 @@ def page_register():
     st.caption(f"Showing {len(shown)} of {len(params)} links. "
                + ", ".join(f"{b}: {int((params.basis == b).sum())}" for b in bases) + ".")
     st.dataframe(shown.rename(columns={"link_id": "link", "from_node": "from", "to_node": "to"}),
-                 hide_index=True, width="stretch")
+                 hide_index=True, width="stretch", height=38 + 35 * len(shown))
 
     st.header("Fixed numbers that aren't links")
     st.dataframe(md_table("mechanism_map.md", "Fixed numbers that aren't links"), hide_index=True, width="stretch")
@@ -217,8 +217,8 @@ def page_register():
         "ordinary lifespan for a US man born in 1958 (66.6 years, CDC/NCHS), so 65+ starts below it.\n"
         "- **E.** Outcome baselines drawn per run (6.0-8.0; longevity 4.5-9.5, centered on 7.0) for everything "
         "outside the parenting variable.\n"
-        "- **Display rule.** No probability is shown as 0% or 100%; bands with more than 20% of runs at a limit "
-        "are marked as saturated.\n\n"
+        "- **Display rule.** No probability is shown at either extreme: below 1% reads \"<1%\" and above 99% reads "
+        "\">99%\". Bands with more than 20% of runs at a limit are marked as saturated.\n\n"
         "**Tested and rejected:** C (narrow M14: trades one sibling's match for another's), D (lower the branch "
         "midpoint: would move the counterfactual headline results), F (reference-level loads: moves the floor "
         "problem to a ceiling problem).\n\n"
@@ -276,7 +276,12 @@ PAGES = {"1. Documented timeline": page_timeline, "2. Dials and results": page_d
 
 def main():
     st.set_page_config(page_title="The Jackson Trajectory", layout="wide")
-    choice = st.sidebar.radio("Page", list(PAGES))
+    names = list(PAGES)
+    try:  # ?page=1|2|3 opens a page directly (shareable links, screenshots)
+        start = min(max(int(st.query_params.get("page", 1)) - 1, 0), len(names) - 1)
+    except ValueError:
+        start = 0
+    choice = st.sidebar.radio("Page", names, index=start)
     st.sidebar.caption(SCOPE)
     PAGES[choice]()
 

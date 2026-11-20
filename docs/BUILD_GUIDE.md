@@ -19,12 +19,13 @@
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
 | 3. Simulation engine | ✅ Done, calibration frozen (seeded engine, 10,000 runs; M12, bins, display rule, per-run baselines; censored sibling check) |
-| 4. Dashboard | 🟡 In progress. Steps 4.1-4.3 ✅ (timeline; dials and results; assumptions register). Next: Step 4.4 |
+| 4. Dashboard | ✅ Done. Three pages; 16 AppTest tests passing; headless run clean; screenshots in docs/screenshots/ |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 4: dashboard page 3 - assumptions register, sources, limitations   (this commit)
+Phase 4: dashboard polish + screenshots   (this commit)
+bc7c31d Phase 4: dashboard page 3 - assumptions register, sources, limitations
 5cbe745 Phase 4: dashboard page 2 - dials, branch cards, outcome bands
 4b02448 Phase 4: dashboard page 1 - documented timeline (Plotly)
 2d2cd8d Phase 3: center longevity baseline, freeze calibration
@@ -70,7 +71,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** Step 4.4, tests, headless run, screenshots, polish.
+**Next step:** STOP at phase boundary. Then Phase 5, Step 5.1 (README). Step 5.2 needs real readers (hard stop).
 
 **Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -718,7 +719,7 @@ git add app/streamlit_app.py
 git commit -m "Phase 4: dashboard page 3 - assumptions register, sources, limitations"
 ```
 
-## Step 4.4 - Run, screenshot, polish
+## Step 4.4 - Run, screenshot, polish ✅ DONE (2026-11-20)
 
 ```bash
 streamlit run app/streamlit_app.py
