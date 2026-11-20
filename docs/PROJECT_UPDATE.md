@@ -6,7 +6,10 @@ A Monte Carlo scenario model that changes one input in Michael Jackson's documen
 
 ## Where it stands
 
-**19 of 22 build steps done.** Phases 0 to 4 are complete: the engine is calibrated and frozen, and the three-page Streamlit dashboard is built, tested and screenshotted. Phase 5 (README, sensitivity read, portfolio copy) is next.
+**21 of 22 build steps done.**
+- Phases 0 to 4 are complete: the engine is calibrated and frozen, and the three-page Streamlit dashboard is built, tested and screenshotted.
+- In Phase 5, the README and the portfolio drafts are done.
+- The one step left is **5.2, the sensitivity read**, which needs 2-3 real readers.
 
 | Phase | Status | Progress |
 |---|---|---|
@@ -15,7 +18,7 @@ A Monte Carlo scenario model that changes one input in Michael Jackson's documen
 | 2. Data model | ✅ Done | 3 of 3 steps + review fixes |
 | 3. Simulation engine | ✅ Done | 6 of 6 steps; calibration frozen |
 | 4. Dashboard | ✅ Done | 4 of 4 steps, 16 tests passing |
-| 5. Write-up + ship | ⬜ Next | 0 of 3 steps |
+| 5. Write-up + ship | 🟡 Waiting on readers | 2 of 3 steps (5.1, 5.3); 5.2 needs real readers |
 
 ## Phase 3: what was built
 
@@ -157,11 +160,31 @@ The fixed numbers (baselines, intercepts, branch logistic, stage decay, bins) ar
 
 **Screenshots:** [docs/screenshots/](screenshots/) has all three pages on desktop, and pages 1 and 2 at phone width (390 px, no horizontal scroll).
 
-## Next: Phase 5, write-up and ship
+## Phase 4 fixes (commit `46fd9f2`)
 
-1. **README.** Method first, findings second as bands, limitations stated plainly, how to run it, sources, screenshots.
-2. **Sensitivity read (hard stop).** Two to three real readers; not simulated.
-3. **Portfolio card, resume bullet and LinkedIn draft** in `docs/portfolio_copy.md`. The resume bullet is labeled "add only once live". The v1.0 tag and repo visibility are Pranav's.
+- Branch B is now labeled "B. Later fame, lighter load".
+- The body-image warning's 2.2-point figure is labeled "(published 10,000-run analysis)". It's true now: `simulate.py` publishes `data/outputs/sensitivity_actual.csv` at 10,000 runs per side, and the figure holds there (−2.23).
+- `.streamlit/config.toml` turns off Streamlit's usage statistics.
+
+## Phase 5 so far
+
+- **[README.md](../README.md)** (Step 5.1, about 4 minutes to read). Method first. Findings as bands only:
+  - the discipline trade-off (no career goes from 12% to 68% as discipline drops 9 → 2 under Actual's other dials), with the assumptions that drive it
+  - the interaction (29% in Nurturing)
+  - sensitivity by outcome, with no single "most important dial"
+
+  Then plain limitations (the failed age-50 check first), the 2009 outcome in one sober sentence, scope, how to run it with tests, sources and screenshots. A "How it was built" section notes the AI-assisted implementation and that every design, scope and calibration decision was Pranav's.
+- **[docs/portfolio_copy.md](portfolio_copy.md)** (Step 5.3, drafts):
+  - portfolio card blurb
+  - resume bullet, labeled "add only once live"
+  - LinkedIn post, which attaches the real screenshots
+  - 60-second interview answer covering where the model fails and why calibration stopped
+- **[docs/sensitivity_read.md](sensitivity_read.md)**: a one-page brief for the 2-3 readers, with the one question, links, how to run the app, and a notes table.
+
+## Next
+
+1. **Step 5.2, the sensitivity read (hard stop).** Send `docs/sensitivity_read.md` to 2-3 readers, including someone who knows the culture and the fanbase. Fix what they flag, then commit "Phase 5: sensitivity-read fixes".
+2. **After that, Pranav's own steps:** the v1.0 tag, repo visibility, the portfolio card going live, and the resume bullet.
 
 ## Scope
 

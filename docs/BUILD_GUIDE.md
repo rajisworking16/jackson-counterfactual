@@ -20,11 +20,12 @@
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
 | 3. Simulation engine | ✅ Done, calibration frozen (seeded engine, 10,000 runs; M12, bins, display rule, per-run baselines; censored sibling check) |
 | 4. Dashboard | ✅ Done (3 pages, 16 tests, screenshots; label and config fixes) |
-| 5. Write-up + ship | 🟡 In progress. Step 5.1 ✅ README. Next: Step 5.3 (portfolio copy); Step 5.2 waits for real readers |
+| 5. Write-up + ship | 🟡 Steps 5.1 ✅ README, 5.3 ✅ portfolio copy (drafts). Step 5.2 waits for real readers |
 
 **Commits (newest first):**
 ```
-Phase 5: README - method, findings, limitations, run instructions   (this commit)
+Phase 5: portfolio card copy + LinkedIn post draft   (this commit)
+bee8dcc Phase 5: README - method, findings, limitations, run instructions
 46fd9f2 Phase 4: label and config fixes
 f9f5c54 Phase 4: dashboard polish + screenshots
 bc7c31d Phase 4: dashboard page 3 - assumptions register, sources, limitations
@@ -73,7 +74,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** Step 5.3 portfolio copy, then STOP before Step 5.2.
+**Next step:** HARD STOP: Step 5.2 sensitivity read. Pranav sends docs/sensitivity_read.md to 2-3 readers and brings back their notes. The v1.0 tag and repo visibility are Pranav's.
 
 **Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -769,7 +770,7 @@ git add -A
 git commit -m "Phase 5: sensitivity-read fixes"
 ```
 
-## Step 5.3 - Portfolio card + LinkedIn post
+## Step 5.3 - Portfolio card + LinkedIn post ✅ DONE (2026-11-20)
 
 - **Portfolio card title:** Counterfactual Scenario Modeling - "The Jackson Trajectory"
 - **Card blurb:** "A Monte Carlo scenario model that changes one input in a documented life - parenting style - and maps how the trajectory branches. Sibling outcomes as a control group, research-based parameter ranges, every assumption published. Python, NumPy, Streamlit."
