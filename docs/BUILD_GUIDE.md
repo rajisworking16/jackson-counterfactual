@@ -18,13 +18,14 @@
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
-| 3. Simulation engine | ✅ Done. Engine seeded at 10,000 runs; calibrated against siblings (M12 narrowed, longevity bins re-spanned, display rule). Actual puts 63% of runs in 45-55 (documented age 50) |
+| 3. Simulation engine | 🟡 In progress. 3.1-3.6 built; Step 3.6 follow-up under way (sibling profiles file, censored sibling check, baseline uncertainty E, test F) |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 3: sibling calibration pass - notes + parameter adjustments   (this commit)
+Phase 3: sensitivity covers all outcome dimensions   (this commit)
+3fac883 Phase 3: sibling calibration pass - notes + parameter adjustments
 c066725 Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results
 0ac8f63 Phase 3: outcome scoring per life stage (6 dimensions, stage decay)
 efdb998 Phase 3: career branch node (A/B/C) with discipline-warmth interaction
@@ -63,7 +64,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** STOP at phase boundary. Pranav reviews docs/calibration_notes.md, then Phase 4 (Step 4.1, dashboard page 1).
+**Next step:** Finish the Step 3.6 follow-up, commit as "Phase 3: calibration follow-up - baseline uncertainty, censored sibling check", then STOP.
 
 **Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -650,7 +651,7 @@ git add model/simulate.py .gitignore data/outputs/.gitkeep data/outputs/branch_p
 git commit -m "Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results"
 ```
 
-## Step 3.6 - Calibration pass against the siblings ✅ DONE (2026-11-20)
+## Step 3.6 - Calibration pass against the siblings 🟡 FOLLOW-UP IN PROGRESS (2026-11-20)
 
 Compare model bands to the sibling table: e.g., a low-exposure/high-autonomy profile (Janet-like dials: discipline ~5, warmth ~4, autonomy ~8) should produce career + relationships bands her documented outcome resembles; a high-exposure profile should resemble Michael's documented markers. Write the comparison in `docs/calibration_notes.md` - what matched, what didn't, which parameters you adjusted and why. This document is interview gold: it shows validation thinking.
 

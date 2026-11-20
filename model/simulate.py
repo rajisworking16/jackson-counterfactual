@@ -164,17 +164,26 @@ def longevity_bands(df):
     return pd.crosstab(whole["preset"], band, normalize="index").reindex(columns=LONGEVITY_LABELS, fill_value=0.0)
 
 
+SCORE_SHIFTS = {"career_shift": "Career attainment", "creative_shift": "Creative output & risk-taking",
+                "mental_health_shift": "Mental health", "physical_health_shift": "Physical health & appearance changes",
+                "relationships_shift": "Relationships & family closeness"}
+
+
 def sensitivity(dials, params, n=2000, seed=SEED):
-    """One-at-a-time: move each dial 2 -> 8, measure the shift in median Mental health and Career."""
+    """One-at-a-time: move each dial 2 -> 8 and measure the shift in every outcome dimension.
+    Score dimensions: shift in the median (0-10). Longevity (Rule 5: band probabilities only,
+    never a score): shift in the share of runs in the <45 and 65+ bands, in percentage points."""
     out = {}
     for dial in dials:
         lo, hi = dict(dials), dict(dials)
         lo[dial], hi[dial] = 2, 8
         d_lo, _ = run_preset("lo", lo, params, n=n, seed=seed)
         d_hi, _ = run_preset("hi", hi, params, n=n, seed=seed)
-        out[dial] = {
-            "mental_health_shift": d_hi["Mental health"].median() - d_lo["Mental health"].median(),
-            "career_shift": d_hi["Career attainment"].median() - d_lo["Career attainment"].median()}
+        row = {k: d_hi[dim].median() - d_lo[dim].median() for k, dim in SCORE_SHIFTS.items()}
+        b_lo, b_hi = longevity_bands(d_lo).iloc[0], longevity_bands(d_hi).iloc[0]
+        row["longevity_under45_pp"] = 100 * (b_hi["<45"] - b_lo["<45"])
+        row["longevity_65plus_pp"] = 100 * (b_hi["65+"] - b_lo["65+"])
+        out[dial] = row
     return pd.DataFrame(out).T.sort_values("mental_health_shift", key=abs, ascending=False)
 
 
