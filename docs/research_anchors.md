@@ -53,9 +53,9 @@ The check: run the model on dial settings that match each sibling's documented e
 
 *Used for: every range, as a check. It's the basis for the links labeled SIBLING CALIBRATION (P04, P13, P14, M01).*
 
-## Gaps to settle in Phase 2
+## Relabeled to ASSUMPTION (2026-11-20)
 
-The starter parameter table labels these links RESEARCH, but none of the anchors above backs them:
+The starter parameter table labeled these links RESEARCH, but none of the anchors above backs them. Pranav decided to relabel all six ASSUMPTION in `data/parameters.csv`. Each note now ends "(was RESEARCH)". If a source is read later, a link can move back to RESEARCH, with the source added to this doc.
 
 | Link | Claimed basis | Status |
 |---|---|---|
@@ -66,4 +66,4 @@ The starter parameter table labels these links RESEARCH, but none of the anchors
 | M07 Attachment → Mental health | Attachment literature | No source read |
 | M10 Attachment → Relationships | Attachment literature | No source read |
 
-Each one either gets a source read before Phase 2 is committed, or gets relabeled ASSUMPTION.
+The remaining RESEARCH links are P01, P11, M05, M09, M12, M13 and M14, all backed by anchors 1 and 2.

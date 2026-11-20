@@ -34,7 +34,7 @@ Pranav is learning while he builds. Treat him as a capable collaborator, not a b
 
 ## Parameters and calibration
 
-- `data/parameters.csv` has 28 rows: P01-P14 (dial to mediator) and M01-M14 (mediator to outcome). The mechanism map in `docs/mechanism_map.md` must have the same 28 links.
+- `data/parameters.csv` has 29 rows: P01-P14 (dial to mediator) and M01-M15 (mediator to outcome). The mechanism map in `docs/mechanism_map.md` must have the same 29 links.
 - Don't change a range, a basis label, the longevity band mapping or the engine's baselines without telling him what and why, and getting a yes. The commit message records the reason.
 - **Known issues, left for Step 3.6 on purpose:** Actual-preset Mental health and Longevity scores sit at the 0-10 floor, and 98.6% of Actual runs land in the `<45` longevity band, against the documented age of 50. Don't fix these early or quietly. They get fixed in the calibration pass, with the reasoning written up in `docs/calibration_notes.md`.
 - Open gap for Phase 2: `mediators.csv` says Trauma / fear load feeds Relationships, but no parameter row links them. Raise it when Phase 2 starts and let him decide.

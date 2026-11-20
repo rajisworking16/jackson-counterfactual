@@ -17,14 +17,15 @@
 |---|---|
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc; reviewed by Pranav) |
-| 2. Data model | 🟡 In progress. Step 2.1 ✅ life stages. Next: Step 2.2 |
+| 2. Data model | 🟡 In progress. Steps 2.1-2.2 ✅ (life stages, 29 parameters). Next: Step 2.3 |
 | 3. Simulation engine | ⬜ Not started |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 2: life stages table for outcome scoring   (this commit)
+Phase 2: parameters table - 29 links with ranges and basis labels   (this commit)
+8ad5a33 Phase 2: life stages table for outcome scoring
 227dc15 Update CURRENT STATUS after Phase 1 review fixes
 6528744 Phase 1: review fixes - dates, body-image evidence, sibling markers
 aeb161b Phase 1: research anchors doc (Gershoff, ACE, child-performer literature, sibling method)
@@ -48,7 +49,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Janet's self-direction year isn't in any source fetched.
 - Flag for Step 3.4: M02's range is negative but the outcome formula subtracts it, so a heavier financial-control load would *raise* career. Raise this with Pranav before Phase 3 code.
 
-**Next step:** Step 2.2, parameters table (29 rows).
+**Next step:** Step 2.3, mechanism map.
 
 **Hard stops still ahead:** Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -286,22 +287,22 @@ git add data/life_stages.csv
 git commit -m "Phase 2: life stages table for outcome scoring"
 ```
 
-## Step 2.2 - Create the parameters table (the heart of the model)
+## Step 2.2 - Create the parameters table (the heart of the model) ✅ DONE (2026-11-20)
 
-Create `data/parameters.csv`. Every dial→mediator and mediator→outcome link gets one row: a low/high effect range and its basis. **Known gap to resolve here:** `mediators.csv` says Trauma / fear load feeds Relationships, but no parameter row links them. Either add a row (e.g. `M15`, basis RESEARCH or ASSUMPTION) or remove Relationships from that mediator's `feeds_outcomes`. Decide, then commit with the reason. Until then the table has 28 rows.
+Create `data/parameters.csv`. Every dial→mediator and mediator→outcome link gets one row: a low/high effect range and its basis. **Known gap to resolve here:** `mediators.csv` says Trauma / fear load feeds Relationships, but no parameter row links them. Either add a row (e.g. `M15`, basis RESEARCH or ASSUMPTION) or remove Relationships from that mediator's `feeds_outcomes`. **Decided (2026-11-20): add `M15`** (Trauma / fear load -> Relationships & family closeness, 0.10 to 0.35, ASSUMPTION). The table has 29 rows. Also decided: P02, P07, P09, M06, M07 and M10 are relabeled ASSUMPTION, because no source for them was read (see `docs/research_anchors.md`).
 **Starter values below are calibration starting points - sanity-check them against the sibling table in Phase 3 and adjust; the basis labels are the honest part.**
 
 ```csv
 link_id,from_node,to_node,low,high,basis,note
 P01,Physical discipline intensity,Trauma / fear load,0.45,0.75,RESEARCH,"Gershoff: strong consistent association with harm markers"
-P02,Emotional warmth & affection,Trauma / fear load,-0.55,-0.25,RESEARCH,"Warmth buffers adversity effects (ACE successors)"
+P02,Emotional warmth & affection,Trauma / fear load,-0.55,-0.25,ASSUMPTION,"Warmth buffers adversity effects; no buffering source read yet (was RESEARCH)"
 P03,Body-image comments (negative),Trauma / fear load,0.15,0.35,ASSUMPTION,"Teasing documented by Michael; effect size assumed"
 P04,Physical discipline intensity,Practice hours & skill acquisition,0.35,0.65,SIBLING CALIBRATION,"Fear-driven rehearsal polish: Jackson 5 precision vs siblings' accounts"
 P05,Emotional warmth & affection,Practice hours & skill acquisition,0.10,0.40,ASSUMPTION,"Intrinsic motivation partially replaces fear (the branch interaction)"
 P06,Autonomy granted,Practice hours & skill acquisition,0.05,0.30,ASSUMPTION,"Self-directed practice sustains some volume"
-P07,Body-image comments (negative),Self-image & body perception,0.40,0.70,RESEARCH,"Appearance teasing -> body-image disturbance literature"
+P07,Body-image comments (negative),Self-image & body perception,0.40,0.70,ASSUMPTION,"Appearance teasing -> body-image disturbance; no source read yet (was RESEARCH)"
 P08,Emotional warmth & affection,Self-image & body perception,-0.40,-0.15,ASSUMPTION,"Parental affirmation as buffer"
-P09,Emotional warmth & affection,Attachment & trust in adults,-0.60,-0.35,RESEARCH,"Attachment literature: warmth predicts secure attachment (invert sign: higher warmth -> lower distrust load)"
+P09,Emotional warmth & affection,Attachment & trust in adults,-0.60,-0.35,ASSUMPTION,"Warmth predicts secure attachment (higher warmth -> lower distrust load); no source read yet (was RESEARCH)"
 P10,Autonomy granted,Attachment & trust in adults,-0.30,-0.10,ASSUMPTION,"Agency in childhood -> trust"
 P11,Physical discipline intensity,Sleep & physical health,0.20,0.45,RESEARCH,"ACE: adversity -> sleep and somatic outcomes"
 P12,Normalcy (school peers play),Sleep & physical health,-0.35,-0.15,ASSUMPTION,"Routine/rest of a normal childhood"
@@ -312,22 +313,23 @@ M02,Financial independence timing,Career attainment,-0.25,-0.05,ASSUMPTION,"Earl
 M03,Practice hours & skill acquisition,Creative output & risk-taking,0.25,0.50,ASSUMPTION,"Technique enables risk"
 M04,Trauma / fear load,Creative output & risk-taking,-0.10,0.25,ASSUMPTION,"Pain fueled some art and suppressed some; wide honest range crossing zero"
 M05,Trauma / fear load,Mental health,0.45,0.75,RESEARCH,"ACE dose-response on mental health"
-M06,Self-image & body perception,Mental health,0.25,0.50,RESEARCH,"Body-image disturbance -> distress"
-M07,Attachment & trust in adults,Mental health,0.20,0.45,RESEARCH,"Insecure attachment -> adult mental-health load"
+M06,Self-image & body perception,Mental health,0.25,0.50,ASSUMPTION,"Body-image disturbance -> distress; no source read yet (was RESEARCH)"
+M07,Attachment & trust in adults,Mental health,0.20,0.45,ASSUMPTION,"Insecure attachment -> adult mental-health load; no source read yet (was RESEARCH)"
 M08,Self-image & body perception,Physical health & appearance changes,0.35,0.65,ASSUMPTION,"Appearance interventions pathway; documented in his case, size assumed"
 M09,Sleep & physical health,Physical health & appearance changes,0.30,0.55,RESEARCH,"ACE/sleep -> somatic health"
-M10,Attachment & trust in adults,Relationships & family closeness,0.40,0.65,RESEARCH,"Attachment predicts adult relationship quality"
+M10,Attachment & trust in adults,Relationships & family closeness,0.40,0.65,ASSUMPTION,"Attachment predicts adult relationship quality; no source read yet (was RESEARCH)"
 M11,Financial independence timing,Relationships & family closeness,0.10,0.35,ASSUMPTION,"Money control entangled family conflict (documented disputes)"
 M12,Trauma / fear load,Longevity,0.35,0.65,RESEARCH,"ACE: adversity count -> lifespan (dose-response)"
 M13,Sleep & physical health,Longevity,0.25,0.50,RESEARCH,"Sleep/health load -> mortality risk"
 M14,Mental health,Longevity,0.20,0.45,RESEARCH,"Mental-health load -> longevity, incl. medication pathways"
+M15,Trauma / fear load,Relationships & family closeness,0.10,0.35,ASSUMPTION,"Fear load strains family trust; size assumed"
 ```
 
 Sign convention (write it in the file's companion note, Step 2.3): mediator values are LOADS from 0–10 (higher = heavier load), except Practice hours and Financial independence timing where the CSV note states direction; outcome scores are 0–10 where higher = better outcome, so negative coefficients on loads are expected - the starter table already follows this: positive ranges on load→harm links are applied as subtractions in the engine (see Phase 3 formulas). **If you change any value, keep the basis label honest and note why in the commit message.**
 
 ```bash
 git add data/parameters.csv
-git commit -m "Phase 2: parameters table - 28 links with ranges and basis labels"
+git commit -m "Phase 2: parameters table - 29 links with ranges and basis labels"
 ```
 
 ## Step 2.3 - The mechanism map + parameter notes
@@ -364,16 +366,17 @@ flowchart LR
   M2 -->|M12| O6[Longevity]
   M5 -->|M13| O6
   O3 -->|M14| O6
+  M2 -->|M15| O5
 ```
 
-Every arrow carries its `link_id`, so the map and `parameters.csv` can be checked against each other: 28 arrows, 28 rows.
+Every arrow carries its `link_id`, so the map and `parameters.csv` can be checked against each other: 29 arrows, 29 rows.
 
 ```bash
 git add docs/mechanism_map.md
 git commit -m "Phase 2: mechanism map (dials -> mediators -> outcomes) + sign convention"
 ```
 
-✅ **Phase 2 verification:** parameters.csv has 28 rows (P01-P14 dial→mediator, M01-M14 mediator→outcome), every row has a basis label · mechanism map renders on GitHub · life_stages.csv in place.
+✅ **Phase 2 verification:** parameters.csv has 29 rows (P01-P14 dial→mediator, M01-M15 mediator→outcome), every row has a basis label · mechanism map renders on GitHub · life_stages.csv in place.
 
 ---
 
@@ -515,7 +518,8 @@ def compute_outcomes(med, c, branch):
     physical = 7.0 - c["M08"]*m["Self-image & body perception"] \
                    - c["M09"]*m["Sleep & physical health"]
     relations = 7.0 - c["M10"]*m["Attachment & trust in adults"] \
-                    - c["M11"]*m["Financial independence timing"]
+                    - c["M11"]*m["Financial independence timing"] \
+                    - c["M15"]*m["Trauma / fear load"]
     longevity = 7.0 - c["M12"]*m["Trauma / fear load"] \
                     - c["M13"]*m["Sleep & physical health"] \
                     - c["M14"]*(7.0 - mental)
@@ -694,7 +698,7 @@ git add -A
 git commit -m "Phase 4: dashboard polish + screenshots"
 ```
 
-✅ **Phase 4 verification:** app runs locally with no errors · sliders change branch probabilities live · page 3 shows all 28 parameters with basis labels · scope statement visible on pages 1 and 3.
+✅ **Phase 4 verification:** app runs locally with no errors · sliders change branch probabilities live · page 3 shows all 29 parameters with basis labels · scope statement visible on pages 1 and 3.
 
 ---
 
@@ -766,7 +770,7 @@ Phase 3: career branch node (A/B/C) with discipline-warmth interaction
 Phase 3: mediator computation from dials (6 mediators, clipped 0-10)
 Phase 3: engine skeleton - presets, seeded RNG, parameter sampler
 Phase 2: mechanism map (dials -> mediators -> outcomes) + sign convention
-Phase 2: parameters table - 28 links with ranges and basis labels
+Phase 2: parameters table - 29 links with ranges and basis labels
 Phase 2: life stages table for outcome scoring
 Phase 1: research anchors doc (Gershoff, ACE, child-performer literature, sibling method)
 Phase 1: sibling control group filled (9 siblings, sourced)
@@ -798,7 +802,7 @@ Small extra commits between these are fine. The rule is one commit per session a
 - [ ] 12 spine rows sourced (6/12 done, 3 pushed)
 - [ ] 30–40 verified life events, every row sourced, no Low confidence
 - [ ] 9 siblings filled from documented public record
-- [ ] 28 parameters, every one basis-labeled; calibration notes written
+- [ ] 29 parameters, every one basis-labeled; calibration notes written
 - [ ] Engine runs seeded at 10,000 runs; 3 sanity checks pass or are explained
 - [ ] Dashboard: 3 pages live locally, scope + "not a prediction" visible
 - [ ] README method-first, limitations plain, sensitivity-read by 2–3 people
