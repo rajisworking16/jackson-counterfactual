@@ -63,3 +63,14 @@ def compute_mediators(dials, c):
             "Attachment & trust in adults": clip(attachment),
             "Sleep & physical health": clip(sleep),
             "Financial independence timing": clip(fin_delay)}
+
+
+def branch_probabilities(med):
+    """Career branches from practice (P) and trauma (T). Logistic midpoint 5.5,
+    scale 1.2 and the 0.15-0.9 clip on C's share are ASSUMPTION."""
+    P, T = med["Practice hours & skill acquisition"], med["Trauma / fear load"]
+    fame = 1 / (1 + np.exp(-(P - 5.5) / 1.2))
+    a = 1 - fame
+    c_share = float(np.clip(T / 10, 0.15, 0.9))
+    return {"A_no_career": a, "B_late_healthy": fame * (1 - c_share),
+            "C_same_timeline": fame * c_share}
