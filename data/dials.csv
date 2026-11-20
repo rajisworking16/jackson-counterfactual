@@ -1,7 +1,7 @@
-dial,actual_documented,counterfactual_preset,what_it_captures
-Physical discipline intensity,9,2,"Belt/switch at rehearsals, per Michael's own accounts"
-Emotional warmth & affection,3,8,"Praise, comfort, being encouraged vs. fear"
-Autonomy granted,2,7,"Choices about career, friends, rest, saying no"
-Normalcy (school peers play),2,7,"Regular schooling, neighborhood friends, unstructured play"
-Body-image comments (negative),8,1,"Teasing about his nose/appearance, per his accounts"
-Parental financial control,9,4,"Father as manager controlling money/decisions into adulthood"
+dial,short_name,actual_documented,counterfactual_preset,what_it_captures
+Physical discipline intensity,Discipline,9,2,"Belt/switch at rehearsals, per Michael's own accounts"
+Emotional warmth & affection,Warmth,3,8,"Praise, comfort, being encouraged vs. fear"
+Autonomy granted,Autonomy,2,7,"Choices about career, friends, rest, saying no"
+Normalcy (school peers play),Normalcy,2,7,"Regular schooling, neighborhood friends, unstructured play"
+Body-image comments (negative),Body-image comments,8,1,"Teasing about his nose/appearance, per his accounts"
+Parental financial control,Financial control,9,4,Father as manager controlling money/decisions into adulthood

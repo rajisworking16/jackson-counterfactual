@@ -16,30 +16,30 @@
 | Phase | Status |
 |---|---|
 | 0. Setup | ✅ Done. Repo on GitHub, venv + Jupyter kernel working, VS Code set up |
-| 1. Research dossier | 🟡 In progress. Step 1.1: 6 of 12 spine rows sourced |
+| 1. Research dossier | 🟡 In progress. Step 1.1: 6 of 12 spine rows sourced; self_report + outcome_links columns added |
 | 2. Data model | ⬜ Not started |
-| 3. Simulation engine | ⬜ Not started (timed to Python lessons) |
+| 3. Simulation engine | ⬜ Not started |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
-**Commits (newest first; the top one is this status update's own commit, hash shown by `git log`):**
+**Commits (newest first):**
 ```
-Phase 1: source 1979, 1984, 1993 rows
+Phase 1: add self_report flag, split dial_links / outcome_links   (this commit)
+c15dbf3 Phase 1: source 1979, 1984, 1993 rows
 6979ea9 Add CLAUDE.md and build guide for Claude Code sessions
 c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 3b1af32 Phase 0: project scaffold - data schemas, starter datasets, notebooks
 ```
 
-**Open decisions (make these before the table grows past 12 rows):**
-1. **`self_report` column (yes/no).** Several load-bearing rows are Michael's own accounts (Oprah 1993, *Moonwalk*, 1964 rehearsals). "High" confidence on those means "he definitely said this," not "this definitely happened" (Joseph denied the beatings). A flag keeps that distinction visible on dashboard page 3.
-2. **Split `dial_links` into `dial_links` + `outcome_links`.** "career peak", "health pathway" and "longevity outcome" aren't dials. Moving them out keeps the dial column parseable for Phase 3.
-3. **Age-check cell** in `notebooks/01_research_dossier.ipynb` (still empty). Short pandas exercise: flag any row where `age` isn't `year - 1958` or one less.
+**Decisions made (2026-11-19):**
+1. `self_report` column added to `life_events.csv`: `yes` = the row rests on Michael's own account. High on a `yes` row means "he said it," not "it happened."
+2. `dial_links` holds real dials only, using `short_name` from `dials.csv` (new column). Non-dial links moved to `outcome_links`, using names from `outcome_dimensions.csv`. A `url` column was added so every source can be clicked.
+3. Trauma -> Relationships gap: add `M15` (Trauma / fear load -> Relationships & family closeness, 0.10 to 0.35, ASSUMPTION). Goes in with the Phase 2 parameters commit. The table becomes 29 rows.
+4. Age-check cell in `notebooks/01_research_dossier.ipynb` stays empty. Pranav writes it.
 
-**Next actions:**
-0. ✅ Done (2026-11-19): `CLAUDE.md` in the repo root, this guide at `docs/BUILD_GUIDE.md` (`6979ea9`).
-1. ✅ Done (2026-11-19): 1979/1984/1993 rows committed.
-2. Make decisions 1 and 2, apply them to all 12 rows, commit.
-3. Source the last 6 spine rows: 1958, 1964, 1978, 1982, 1988, 2009 (1964 is the hardest, see Step 1.1).
+**Next step:** Step 1.1, source the last 6 spine rows (1958, 1964, 1978, 1982, 1988, 2009) and fill `url` for the existing 6.
+
+**Hard stops in the end-to-end run:** end of Phase 1 (row-by-row review), Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
 **Every session starts with** (in Claude Code, CLAUDE.md tells it to run these checks itself):
 ```bash

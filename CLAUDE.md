@@ -39,10 +39,10 @@ Pranav is learning while he builds. Treat him as a capable collaborator, not a b
 - **Known issues, left for Step 3.6 on purpose:** Actual-preset Mental health and Longevity scores sit at the 0-10 floor, and 98.6% of Actual runs land in the `<45` longevity band, against the documented age of 50. Don't fix these early or quietly. They get fixed in the calibration pass, with the reasoning written up in `docs/calibration_notes.md`.
 - Open gap for Phase 2: `mediators.csv` says Trauma / fear load feeds Relationships, but no parameter row links them. Raise it when Phase 2 starts and let him decide.
 
-## Open decisions (raise these before adding Phase 1 rows)
+## Decisions made (2026-11-19)
 
-1. Add a `self_report` column (yes/no) to `life_events.csv`.
-2. Split `dial_links` into `dial_links` + `outcome_links` ("career peak", "health pathway" and "longevity outcome" aren't dials).
+1. `life_events.csv` has a `self_report` column (yes/no). `yes` = the row rests on Michael's own account.
+2. `dial_links` holds real dials only, using `short_name` from `dials.csv`. Non-dial links go in `outcome_links`, using names from `outcome_dimensions.csv`. Every sourced row fills `url`.
 3. The age-check cell in `notebooks/01_research_dossier.ipynb` is his to write. Don't fill it in.
 
 ## Commands

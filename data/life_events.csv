@@ -1,13 +1,13 @@
-year,age,event,dial_links,source,confidence
-1958,0,"Born Aug 29, Gary, Indiana; father a steel-mill crane operator",,,
-1964,6,"Jackson 5 formed; father's rigorous fear-based rehearsal regime begins","Discipline, Warmth",,
-1968,9,"Motown audition in Detroit, July 23, 1968","Autonomy, Normalcy",Detroit Historical Society - Encyclopedia of Detroit: Jackson 5,High
-1969,10,"Signs with Motown Mar 11, 1969; brothers relocated to Los Angeles","Autonomy, Normalcy",Detroit Historical Society - Encyclopedia of Detroit: Jackson 5,High
-1970,11,"I Want You Back hits #1 on Billboard Hot 100, Jan 31, 1970; childhood becomes full-time work","Normalcy, Financial control",Motown Classic - Jackson 5 I Want You Back,High
-1978,20,"The Wiz; meets Quincy Jones",Autonomy,,
-1979,20,"Off the Wall released Aug 10, 1979 - first real creative-control push",Autonomy,AllMusic - Off the Wall,High
-1982,24,Thriller - career peak,career peak,,
-1984,25,"Scalp burned filming Pepsi commercial, Jan 27, 1984; widely reported as start of painkiller use",health pathway,Biography.com - Michael Jackson iconic moments,Medium
-1988,29,"Moonwalk publishes his own account of the beatings and fear; buys Neverland","Warmth, Normalcy",,
-1993,34,"Oprah interview, Feb 10, 1993: describes crying from loneliness, fear of his father, getting sick when he saw him","Discipline, Warmth",Oprah.com - Oprah Reflects on Her Interview with Michael Jackson,High
-2009,50,"Dies June 25, 2009 (propofol; physician later convicted)",longevity outcome,,
+year,age,event,dial_links,outcome_links,self_report,source,url,confidence
+1958,0,"Born Aug 29, Gary, Indiana; father a steel-mill crane operator",,,no,,,
+1964,6,Jackson 5 formed; father's rigorous fear-based rehearsal regime begins,"Discipline, Warmth",,yes,,,
+1968,9,"Motown audition in Detroit, July 23, 1968","Autonomy, Normalcy",,no,Detroit Historical Society - Encyclopedia of Detroit: Jackson 5,,High
+1969,10,"Signs with Motown Mar 11, 1969; brothers relocated to Los Angeles","Autonomy, Normalcy",,no,Detroit Historical Society - Encyclopedia of Detroit: Jackson 5,,High
+1970,11,"I Want You Back hits #1 on Billboard Hot 100, Jan 31, 1970; childhood becomes full-time work","Normalcy, Financial control",,no,Motown Classic - Jackson 5 I Want You Back,,High
+1978,20,The Wiz; meets Quincy Jones,Autonomy,,no,,,
+1979,20,"Off the Wall released Aug 10, 1979 - first real creative-control push",Autonomy,,no,AllMusic - Off the Wall,,High
+1982,24,Thriller - career peak,,Career attainment,no,,,
+1984,25,"Scalp burned filming Pepsi commercial, Jan 27, 1984; widely reported as start of painkiller use",,Physical health & appearance changes,no,Biography.com - Michael Jackson iconic moments,,Medium
+1988,29,Moonwalk publishes his own account of the beatings and fear; buys Neverland,"Warmth, Normalcy",,yes,,,
+1993,34,"Oprah interview, Feb 10, 1993: describes crying from loneliness, fear of his father, getting sick when he saw him","Discipline, Warmth",,yes,Oprah.com - Oprah Reflects on Her Interview with Michael Jackson,,High
+2009,50,"Dies June 25, 2009 (propofol; physician later convicted)",,Longevity,no,,,
