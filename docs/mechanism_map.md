@@ -56,7 +56,7 @@ Most links are ASSUMPTION, and that's stated plainly. Six of them (P02, P07, P09
 - **M04 crosses zero** (-0.10 to 0.25) on purpose. Pain fed some of the art and suppressed some of it, and the range carries that uncertainty instead of picking a side.
 - **M14 starts from an outcome, not a mediator.** Mental health feeds Longevity as a load, `7.0 - mental`.
 
-**To check before Step 3.4:** M02's range is negative (-0.25 to -0.05), but the guide's formula subtracts it (`- c["M02"] * financial load`). That means a later financial independence would *raise* career attainment, which is the opposite of the note on the row. Either the range or the formula sign needs to flip. This is flagged for Pranav and not changed here.
+- **Every load-to-outcome link is positive and subtracted.** M02 used to be the exception: its range was -0.25 to -0.05, so subtracting it meant a later financial independence *raised* career attainment. On 2026-11-20 its range was flipped to 0.05 to 0.25 and the subtraction kept, so a heavier delay load lowers career like every other load. M04 is the only load-to-outcome range that still crosses zero, on purpose.
 
 ## Fixed numbers that aren't links
 
@@ -78,6 +78,6 @@ Lowering discipline lowers practice hours through P04, which shifts probability 
 
 ## Consistency with the other tables
 
-- Every `from_node` and `to_node` in `parameters.csv` matches a name in `dials.csv`, `mediators.csv` or `outcome_dimensions.csv` (checked 2026-11-20).
+- Every `from_node` and `to_node` in `parameters.csv` matches a name in `dials.csv`, `mediators.csv` or `outcome_dimensions.csv` (re-checked 2026-11-20 after the M02, P14, dial and mediator fixes).
 - Every mediator's drivers in `mediators.csv` match the P-links exactly.
-- `mediators.csv` uses short outcome names in `feeds_outcomes` ("Creative output", "Relationships", "Physical health"). It also leaves out Trauma → Creative output (M04). The parameter table is the one the engine reads.
+- Every mediator's `feeds_outcomes` in `mediators.csv` matches its M-links exactly, using the full names from `outcome_dimensions.csv`. Trauma → Creative output (M04) was added on 2026-11-20.
