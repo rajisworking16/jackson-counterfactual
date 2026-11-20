@@ -19,12 +19,13 @@
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
 | 3. Simulation engine | ✅ Done, calibration frozen (seeded engine, 10,000 runs; M12, bins, display rule, per-run baselines; censored sibling check) |
-| 4. Dashboard | 🟡 In progress. Steps 4.1-4.2 ✅ (timeline; dials, branch cards, outcome bands). Next: Step 4.3 |
+| 4. Dashboard | 🟡 In progress. Steps 4.1-4.3 ✅ (timeline; dials and results; assumptions register). Next: Step 4.4 |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 4: dashboard page 2 - dials, branch cards, outcome bands   (this commit)
+Phase 4: dashboard page 3 - assumptions register, sources, limitations   (this commit)
+5cbe745 Phase 4: dashboard page 2 - dials, branch cards, outcome bands
 4b02448 Phase 4: dashboard page 1 - documented timeline (Plotly)
 2d2cd8d Phase 3: center longevity baseline, freeze calibration
 bd97601 Phase 3: calibration follow-up - baseline uncertainty, censored sibling check
@@ -69,7 +70,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** Step 4.3, dashboard page 3 (assumptions register).
+**Next step:** Step 4.4, tests, headless run, screenshots, polish.
 
 **Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -708,7 +709,7 @@ git add app/streamlit_app.py
 git commit -m "Phase 4: dashboard page 2 - dials, branch cards, outcome bands"
 ```
 
-## Step 4.3 - Page 3: The assumptions register
+## Step 4.3 - Page 3: The assumptions register ✅ DONE (2026-11-20)
 
 Render `parameters.csv` as a table (link, range, basis, note), the research anchors summary, the calibration summary, and the limitations block: scope (parenting variable only; allegations out of scope), method limits (no counterfactual data exists; bands are structured judgment, not measurement), and Rule 5's sober note on the 2009 outcome. **This page is what makes the project serious - do not rush it.**
 

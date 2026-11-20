@@ -167,7 +167,111 @@ def page_dials():
         st.caption(NOT_A_PREDICTION)
 
 
-PAGES = {"1. Documented timeline": page_timeline, "2. Dials and results": page_dials}
+# ---------------------------------------------------------------- page 3
+@st.cache_data
+def md_table(doc, heading):
+    """Read the first markdown table under a '## heading' in docs/<doc> into a DataFrame."""
+    lines = (ROOT / "docs" / doc).read_text().splitlines()
+    start = next(i for i, ln in enumerate(lines) if ln.strip() == "## " + heading)
+    rows = []
+    for ln in lines[start + 1:]:
+        if ln.startswith("## "):
+            break
+        if ln.startswith("|"):
+            rows.append([c.strip() for c in ln.strip().strip("|").split("|")])
+        elif rows:
+            break
+    header, body = rows[0], [r for r in rows[2:]]
+    return pd.DataFrame(body, columns=header)
+
+
+def page_register():
+    st.title("Assumptions register")
+    st.info(SCOPE)
+    st.markdown("Every number the model uses is listed here, with where it comes from. "
+                "**RESEARCH** = a published study backs the direction and size. **SIBLING CALIBRATION** = the size "
+                "was checked against the nine siblings' documented outcomes. **ASSUMPTION** = a stated judgment "
+                "with a wide range. Most links are ASSUMPTION, and that's stated plainly.")
+
+    st.header("The 29 links")
+    params = load_params()
+    bases = sorted(params["basis"].unique())
+    pick = st.multiselect("Filter by basis", bases, default=bases, key="basis_filter")
+    shown = params[params["basis"].isin(pick)]
+    st.caption(f"Showing {len(shown)} of {len(params)} links. "
+               + ", ".join(f"{b}: {int((params.basis == b).sum())}" for b in bases) + ".")
+    st.dataframe(shown.rename(columns={"link_id": "link", "from_node": "from", "to_node": "to"}),
+                 hide_index=True, width="stretch")
+
+    st.header("Fixed numbers that aren't links")
+    st.dataframe(md_table("mechanism_map.md", "Fixed numbers that aren't links"), hide_index=True, width="stretch")
+
+    st.header("Calibration against the siblings (frozen)")
+    st.markdown(
+        "Sibling-like dial profiles (ASSUMPTION, in `data/sibling_profiles.csv`) were run through the engine and "
+        "compared with the documented record: public careers, public statements and lifespan to date.\n\n"
+        "**Applied (approved):**\n"
+        "- **A.** M12 (trauma → longevity) narrowed from 0.35-0.65 to 0.15-0.35, now SIBLING CALIBRATION. "
+        "Trauma reached longevity twice, directly and through mental health.\n"
+        "- **B.** Longevity bins re-spanned to 0-2 / 2-3.5 / 3.5-5 / 5+. Anchor: the 7.0 baseline stands for an "
+        "ordinary lifespan for a US man born in 1958 (66.6 years, CDC/NCHS), so 65+ starts below it.\n"
+        "- **E.** Outcome baselines drawn per run (6.0-8.0; longevity 4.5-9.5, centered on 7.0) for everything "
+        "outside the parenting variable.\n"
+        "- **Display rule.** No probability is shown as 0% or 100%; bands with more than 20% of runs at a limit "
+        "are marked as saturated.\n\n"
+        "**Tested and rejected:** C (narrow M14: trades one sibling's match for another's), D (lower the branch "
+        "midpoint: would move the counterfactual headline results), F (reference-level loads: moves the floor "
+        "problem to a ceiling problem).\n\n"
+        "**Frozen.** Longevity calibration stopped here, to avoid fitting six lifespans run through assumed profiles.")
+
+    st.header("Limitations")
+    st.markdown(
+        "1. **The documented age-50 check fails.** Under the Actual preset, the most likely band is <45 (40% of runs); "
+        "45-55, where the documented age sits, holds 30%. It passed before baseline uncertainty was added and was "
+        "never a calibration target, so it isn't tuned back.\n"
+        "2. **About half the runs are ruled out for each living sibling.** On average 51% of runs end before a living "
+        "sibling's current age (Jackie and Marlon 81%, Randy 48%, Rebbie 47%, La Toya 37%, Janet 13%). The model "
+        "leans toward shorter lives than this family has had.\n"
+        "3. **The brothers' profile is the largest miss.** Same rehearsal regime as Michael; the model can't tell "
+        "their documented lives apart from his.\n"
+        "4. **Longevity is a conventional score-to-age mapping**, anchored in direction only. The bands are a way to "
+        "read a score, not a lifespan estimate.\n"
+        "5. **No counterfactual data exists.** The bands are structured judgment anchored to research and to nine "
+        "siblings' public record, not measurement. One life, one family, one era.\n"
+        "6. **Career is scored from practice volume.** Group role, opportunity and talent aren't parenting dials.\n"
+        "7. **Mental health has no sibling check.** The project draws no inference about anyone's private mental "
+        "health, so the Actual preset's floor (about a quarter of runs at 0) can't be tested against anyone.")
+    st.markdown("**The 2009 outcome.** Michael Jackson died on June 25, 2009, of acute propofol intoxication; the "
+                "coroner ruled it a homicide and his physician was convicted of involuntary manslaughter, an acute "
+                "cause that sits outside what the model's chronic longevity pathway represents.")
+
+    st.header("Sources")
+    st.markdown(
+        "**Research anchors** (details in `docs/research_anchors.md`):\n"
+        "- Gershoff & Grogan-Kaylor (2016), *Journal of Family Psychology*: spanking linked with 13 of 17 detrimental "
+        "outcomes across about 160,000 children, and not with better compliance "
+        "([UT News](https://news.utexas.edu/2016/04/25/risks-of-harm-from-spanking-confirmed-by-researchers)).\n"
+        "- The CDC-Kaiser ACE study (Felitti et al., 1998): a graded dose-response between childhood adversity and adult "
+        "health ([CDC](https://www.cdc.gov/violenceprevention/aces/about.html)).\n"
+        "- US male life expectancy at birth, 1958: 66.6 years "
+        "([CDC/NCHS](https://data.cdc.gov/api/views/w9j2-ggv5/rows.csv)).\n\n"
+        "**Primary sources on Michael and the family:**\n"
+        "- *Moonwalk* (1988), as quoted by [CBS News/AP](https://www.cbsnews.com/news/joe-jackson-complicated-relationship-with-his-children/) "
+        "and [Yahoo Entertainment](https://www.yahoo.com/lifestyle/not-easy-firing-father-michael-jacksons-complicated-relationship-late-father-joe-222713803.html).\n"
+        "- The Oprah interview (February 10, 1993), via [TIME](https://time.com/archive/6722459/peter-pan-speaks) and "
+        "[NPR](https://www.tpr.org/2018-06-27/joe-jackson-strict-manager-and-father-to-pop-royalty-dead-at-89).\n"
+        "- The Oxford Union speech (2001), via [Salon](https://salon.com/2011/03/08/10_year_time_capsule_michael_jackson_oxford_invincible).\n"
+        "- Coroner's ruling (August 28, 2009), via [ABC News](https://abcnews.com/Entertainment/MichaelJackson/story?id=8433380); "
+        "the physician's conviction (November 7, 2011), via [ABA Journal](https://abajournal.com/news/article/conrad_murray_guilty_involuntary_manslaughter_death_michael_jackson).\n"
+        "- Sibling accounts: La Toya on [CNN](https://transcripts.cnn.com/TRANSCRIPTS/1106/21/pmt.01.html) (2011); Janet and Randy "
+        "via [Entertainment Tonight](https://www.etonline.com/node/178497) (2022); Jackie via "
+        "[The Irish Times / Guardian](https://www.irishtimes.com/culture/music/the-jacksons-it-was-michael-s-body-and-he-did-what-he-wanted-to-look-how-he-wanted-to-look-1.4530020) (2021).\n\n"
+        "Every row of `data/life_events.csv` and `data/sibling_outcomes.csv` carries its own source and URL.")
+    st.caption(NOT_A_PREDICTION)
+
+
+PAGES = {"1. Documented timeline": page_timeline, "2. Dials and results": page_dials,
+         "3. Assumptions register": page_register}
 
 
 def main():
