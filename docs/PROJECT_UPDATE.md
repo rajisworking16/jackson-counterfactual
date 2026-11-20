@@ -1,6 +1,6 @@
 # Project Update: The Jackson Trajectory
 
-**As of:** 2026-11-20 · **Branch:** `main` · **Latest commit on GitHub:** see `git log` ("Phase 5: pre-read copy fixes")
+**As of:** 2026-11-20 · **Branch:** `main` · **Latest commit on GitHub:** `5546bb2`
 
 A Monte Carlo scenario model that changes one input in Michael Jackson's documented life (his father's parenting style) and maps how the trajectory branches. It's a scenario model, not a prediction. The full plan is in [BUILD_GUIDE.md](BUILD_GUIDE.md).
 
@@ -104,16 +104,20 @@ Details are in [calibration_notes.md](calibration_notes.md).
 
 **Mental health, Childhood** (median, with p10-p90): Actual 0.77 (0.0-2.2), Strict coach 5.21 (4.2-6.2), Nurturing 6.85 (6.0-7.7).
 
-**Sensitivity** (Actual preset: each dial moved 2 → 8. Medians for the scores; longevity as percentage-point shifts in band share)
+**Discipline sweep** (Actual's other dials kept; share of runs with no professional career): discipline 9 → 12%, 7 → 22%, 5 → 38%, 3 → 58%, 2 → 68%. With warmth and autonomy also raised (the Nurturing preset), it's 29%.
+
+**Sensitivity** (published in `data/outputs/sensitivity_actual.csv`: Actual preset, each dial moved 2 → 8, 10,000 runs per side. Medians for the scores; longevity as percentage-point shifts in band share)
 
 | Dial | Career | Creative | Mental | Physical | Relationships | Longevity <45 | Longevity 65+ |
 |---|---|---|---|---|---|---|---|
-| Warmth | +0.86 | +0.79 | +2.93 | +0.99 | +2.05 | −30.1 pp | +22.7 pp |
-| Discipline | +4.77 | +2.88 | −2.41 | −1.05 | −0.82 | +31.5 pp | −43.8 pp |
-| Body-image comments | 0.00 | −0.11 | −2.23 | −1.73 | −0.35 | +21.9 pp | −16.0 pp |
-| Autonomy | +0.82 | +0.39 | +0.39 | 0.00 | +1.00 | −2.7 pp | +1.5 pp |
-| Normalcy | 0.00 | 0.00 | 0.00 | +0.62 | 0.00 | −12.1 pp | +7.5 pp |
-| Financial control | −0.46 | 0.00 | 0.00 | 0.00 | −0.74 | 0.0 pp | 0.0 pp |
+| Warmth | +0.85 | +0.80 | +2.97 | +0.99 | +2.04 | −30.3 pp | +22.1 pp |
+| Discipline | +4.72 | +2.88 | −2.38 | −1.06 | −0.81 | +31.7 pp | −42.9 pp |
+| Body-image comments | 0.00 | −0.13 | −2.23 | −1.73 | −0.33 | +21.6 pp | −15.2 pp |
+| Autonomy | +0.83 | +0.42 | +0.39 | 0.00 | +0.98 | −2.6 pp | +1.2 pp |
+| Normalcy | 0.00 | 0.00 | 0.00 | +0.62 | 0.00 | −11.4 pp | +7.5 pp |
+| Financial control | −0.47 | 0.00 | 0.00 | 0.00 | −0.72 | 0.0 pp | 0.0 pp |
+
+No single "most important dial": discipline leads career, creative output and longevity; warmth leads mental health and relationships; body-image comments lead physical health.
 
 ## Sanity checks
 
@@ -181,7 +185,7 @@ The fixed numbers (baselines, intercepts, branch logistic, stage decay, bins) ar
   - 60-second interview answer covering where the model fails and why calibration stopped
 - **[docs/sensitivity_read.md](sensitivity_read.md)**: a one-page brief for the 2-3 readers, with the one question, links, how to run the app, and a notes table.
 
-## Pre-read copy fixes (committed: "Phase 5: pre-read copy fixes")
+## Pre-read copy fixes (commit `5546bb2`)
 
 | Fix | Status |
 |---|---|
