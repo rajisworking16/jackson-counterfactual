@@ -15,8 +15,8 @@
 
 | Phase | Status |
 |---|---|
-| 0. Setup | ✅ Done. Repo on GitHub, venv + Jupyter kernel working, VS Code set up |
-| 1. Research dossier | 🟡 In progress. Step 1.1: 6 of 12 spine rows sourced; self_report + outcome_links columns added |
+| 0. Setup | ✅ Done |
+| 1. Research dossier | 🟡 In progress. Step 1.1 ✅ (12 of 12 spine rows sourced). Next: Step 1.2 |
 | 2. Data model | ⬜ Not started |
 | 3. Simulation engine | ⬜ Not started |
 | 4. Dashboard | ⬜ Not started |
@@ -24,20 +24,17 @@
 
 **Commits (newest first):**
 ```
-Phase 1: add self_report flag, split dial_links / outcome_links   (this commit)
+Phase 1: spine complete - 12 rows sourced   (this commit)
+a2fdac8 Phase 1: add self_report flag, split dial_links / outcome_links
 c15dbf3 Phase 1: source 1979, 1984, 1993 rows
 6979ea9 Add CLAUDE.md and build guide for Claude Code sessions
 c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 3b1af32 Phase 0: project scaffold - data schemas, starter datasets, notebooks
 ```
 
-**Decisions made (2026-11-19):**
-1. `self_report` column added to `life_events.csv`: `yes` = the row rests on Michael's own account. High on a `yes` row means "he said it," not "it happened."
-2. `dial_links` holds real dials only, using `short_name` from `dials.csv` (new column). Non-dial links moved to `outcome_links`, using names from `outcome_dimensions.csv`. A `url` column was added so every source can be clicked.
-3. Trauma -> Relationships gap: add `M15` (Trauma / fear load -> Relationships & family closeness, 0.10 to 0.35, ASSUMPTION). Goes in with the Phase 2 parameters commit. The table becomes 29 rows.
-4. Age-check cell in `notebooks/01_research_dossier.ipynb` stays empty. Pranav writes it.
+**Decisions made (2026-11-19):** `self_report` column; `dial_links` (short dial names from `dials.csv` `short_name`) split from `outcome_links`; `url` column; M15 Trauma -> Relationships added in Phase 2 (29 parameter rows); age-check cell left for Pranav. The spine commit message drops "age check added" because the cell is still his to write.
 
-**Next step:** Step 1.1, source the last 6 spine rows (1958, 1964, 1978, 1982, 1988, 2009) and fill `url` for the existing 6.
+**Next step:** Step 1.2, extend the timeline to 30-40 rows in two batches.
 
 **Hard stops in the end-to-end run:** end of Phase 1 (row-by-row review), Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -153,24 +150,24 @@ time, with a "what you just learned" note at the end of each step.
 **Confidence scale:** High = his own words or court/official record · Medium = credible biography or sibling account · Low = widely repeated but thinly sourced (avoid Low; if a row can only be Low, drop the row).
 **Caveat on "his own words = High":** that rates how sure we are he *said* it, not whether it happened. See open decision 1 (`self_report` flag) in Current Status.
 
-## Step 1.1 - Verify the spine rows in life_events.csv 🟡 IN PROGRESS (6 of 12)
+## Step 1.1 - Verify the spine rows in life_events.csv ✅ DONE (12 of 12, 2026-11-19)
 
 The original 11 rows became 12. Three starter rows had wrong years or ages: the audition was July 23, 1968 (age 9, in Detroit), the Motown signing and LA move was March 11, 1969, and "I Want You Back" hit #1 on January 31, 1970. The 1968 and 1969 rows were replaced by three correct ones.
 
 | Year | Age | Event (short) | Status | Source used / where to verify |
 |---|---|---|---|---|
-| 1958 | 0 | Born Aug 29, Gary, Indiana | ⬜ To do | Public record / *Moonwalk* |
-| 1964 | 6 | Jackson 5 formed; fear-based rehearsal regime | ⬜ To do (hardest) | *Moonwalk*; sibling accounts. Core claim of the model and mostly his own account, so it's a likely `self_report = yes` |
-| 1968 | 9 | Motown audition, Detroit, July 23 | ✅ Pushed · High | Detroit Historical Society, Encyclopedia of Detroit: Jackson 5 |
+| 1958 | 0 | Born Aug 29, Gary, Indiana | ✅ Sourced | Public record / *Moonwalk* |
+| 1964 | 6 | Jackson 5 formed; fear-based rehearsal regime | ✅ Sourced · Medium (early 1960s; exact year not in sources) | *Moonwalk*; sibling accounts. Core claim of the model and mostly his own account, so it's a likely `self_report = yes` |
+| 1968 | 9 | Motown audition, Detroit, July 1968 (the Detroit page gives month only) | ✅ Pushed · High | Detroit Historical Society, Encyclopedia of Detroit: Jackson 5 |
 | 1969 | 10 | Signs with Motown Mar 11; brothers to LA | ✅ Pushed · High | Detroit Historical Society, Encyclopedia of Detroit: Jackson 5 |
 | 1970 | 11 | "I Want You Back" #1 Billboard Hot 100, Jan 31 | ✅ Pushed · High | Motown Classic: Jackson 5 *I Want You Back* |
-| 1978 | 20 | *The Wiz*; meets Quincy Jones | ⬜ To do | Film record; both men's accounts |
+| 1978 | 20 | *The Wiz*; meets Quincy Jones | ✅ Sourced | Film record; both men's accounts |
 | 1979 | 20 | *Off the Wall* released Aug 10 (age fixed from 21) | ✅ Pushed · High | AllMusic: *Off the Wall* |
-| 1982 | 24 | *Thriller* | ⬜ To do | Chart/sales records |
+| 1982 | 24 | *Thriller* | ✅ Sourced | Chart/sales records |
 | 1984 | 25 | Pepsi scalp burn, Jan 27; widely reported as start of painkiller use | ✅ Pushed · Medium | Biography.com. Medium because the painkiller link is reported, not proven. Wording changed from "documented start" |
-| 1988 | 29 | *Moonwalk* publishes his account; buys Neverland | ⬜ To do | The book itself; property records |
+| 1988 | 29 | *Moonwalk* publishes his account; buys Neverland | ✅ Sourced | The book itself; property records |
 | 1993 | 34 | Oprah interview, Feb 10 | ✅ Pushed · High | Oprah.com: Oprah Reflects on Her Interview with Michael Jackson. High = he said it; Joseph denied the beatings |
-| 2009 | 50 | Dies June 25, 2009 (propofol; physician convicted) | ⬜ To do | Coroner's report; court record of the trial |
+| 2009 | 50 | Dies June 25, 2009 (propofol; physician convicted) | ✅ Sourced | Coroner's report; court record of the trial |
 
 ```bash
 # done: c08a288
