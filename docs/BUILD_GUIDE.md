@@ -17,14 +17,15 @@
 |---|---|
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc; reviewed by Pranav) |
-| 2. Data model | 🟡 In progress. Steps 2.1-2.2 ✅ (life stages, 29 parameters). Next: Step 2.3 |
+| 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map) |
 | 3. Simulation engine | ⬜ Not started |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 2: parameters table - 29 links with ranges and basis labels   (this commit)
+Phase 2: mechanism map (dials -> mediators -> outcomes) + sign convention   (this commit)
+ad3ff4e Phase 2: parameters table - 29 links with ranges and basis labels
 8ad5a33 Phase 2: life stages table for outcome scoring
 227dc15 Update CURRENT STATUS after Phase 1 review fixes
 6528744 Phase 1: review fixes - dates, body-image evidence, sibling markers
@@ -49,7 +50,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Janet's self-direction year isn't in any source fetched.
 - Flag for Step 3.4: M02's range is negative but the outcome formula subtracts it, so a heavier financial-control load would *raise* career. Raise this with Pranav before Phase 3 code.
 
-**Next step:** Step 2.3, mechanism map.
+**Next step:** STOP at phase boundary. Pranav decides the M02 sign question, then Phase 3 (Step 3.1). Phase 3 is timed to his Python course: offer to let him write each function first.
 
 **Hard stops still ahead:** Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -332,7 +333,7 @@ git add data/parameters.csv
 git commit -m "Phase 2: parameters table - 29 links with ranges and basis labels"
 ```
 
-## Step 2.3 - The mechanism map + parameter notes
+## Step 2.3 - The mechanism map + parameter notes ✅ DONE (2026-11-20)
 
 Create `docs/mechanism_map.md`: a Mermaid diagram of dials → mediators → outcomes (paste-able into GitHub, renders automatically), plus the sign convention and the branch-interaction note ("Branch A probability rises as discipline falls UNLESS practice hours are held up by warmth/autonomy - intrinsic motivation replacing fear").
 
