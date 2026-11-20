@@ -74,3 +74,43 @@ def branch_probabilities(med):
     c_share = float(np.clip(T / 10, 0.15, 0.9))
     return {"A_no_career": a, "B_late_healthy": fame * (1 - c_share),
             "C_same_timeline": fame * c_share}
+
+
+STAGE_DECAY = {"Childhood": 0.0, "Teen": 0.1, "Young adult": 0.2, "Peak": 0.35, "Later": 0.5}
+
+
+def compute_outcomes(med, c, branch):
+    """Mediators -> six outcomes (0-10, higher = better), per life stage.
+    7.0 baseline (ASSUMPTION). Load -> outcome coefficients are positive and
+    subtracted; practice is added around a midpoint of 5."""
+    m = med
+    career = 7.0 + c["M01"] * (m["Practice hours & skill acquisition"] - 5) \
+                 - c["M02"] * m["Financial independence timing"]
+    if branch == "A_no_career":
+        career = min(career, 3.0)          # normal-life ceiling on this dimension
+    creative = 7.0 + c["M03"] * (m["Practice hours & skill acquisition"] - 5) \
+                   - c["M04"] * m["Trauma / fear load"]
+    if branch == "A_no_career":
+        creative = min(creative, 4.5)      # music as a gift, not a profession
+    mental = 7.0 - c["M05"] * m["Trauma / fear load"] \
+                 - c["M06"] * m["Self-image & body perception"] \
+                 - c["M07"] * m["Attachment & trust in adults"]
+    physical = 7.0 - c["M08"] * m["Self-image & body perception"] \
+                   - c["M09"] * m["Sleep & physical health"]
+    relations = 7.0 - c["M10"] * m["Attachment & trust in adults"] \
+                    - c["M11"] * m["Financial independence timing"] \
+                    - c["M15"] * m["Trauma / fear load"]
+    longevity = 7.0 - c["M12"] * m["Trauma / fear load"] \
+                    - c["M13"] * m["Sleep & physical health"] \
+                    - c["M14"] * (7.0 - mental)
+    clip = lambda x: float(np.clip(x, 0, 10))
+    base = {"Career attainment": clip(career), "Creative output & risk-taking": clip(creative),
+            "Mental health": clip(mental), "Physical health & appearance changes": clip(physical),
+            "Relationships & family closeness": clip(relations), "Longevity": clip(longevity)}
+    staged = {}
+    for stage, decay in STAGE_DECAY.items():
+        row = dict(base)
+        for dim in ("Mental health", "Physical health & appearance changes"):
+            row[dim] = clip(row[dim] - decay * m["Trauma / fear load"] * 0.3)
+        staged[stage] = row
+    return staged  # Longevity is whole-life: the same value at every stage

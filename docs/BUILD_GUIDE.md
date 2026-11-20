@@ -18,13 +18,14 @@
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
-| 3. Simulation engine | 🟡 In progress. Steps 3.1-3.3 ✅. Next: Step 3.4 |
+| 3. Simulation engine | 🟡 In progress. Steps 3.1-3.4 ✅. Next: Step 3.5 |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 3: career branch node (A/B/C) with discipline-warmth interaction   (this commit)
+Phase 3: outcome scoring per life stage (6 dimensions, stage decay)   (this commit)
+efdb998 Phase 3: career branch node (A/B/C) with discipline-warmth interaction
 0780166 Phase 3: mediator computation from dials (6 mediators, clipped 0-10)
 96cf388 Phase 3: engine skeleton - presets, seeded RNG, parameter sampler
 e41aff2 Phase 2: record conflicting Michael self-direction dates
@@ -60,7 +61,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** Step 3.4, outcomes per life stage (with M15).
+**Next step:** Step 3.5, Monte Carlo runner + sensitivity.
 
 **Hard stops still ahead:** Step 3.6 (calibration approval: show the comparison table and proposed changes, apply only after Pranav says yes), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -506,7 +507,7 @@ git add model/simulate.py
 git commit -m "Phase 3: career branch node (A/B/C) with discipline-warmth interaction"
 ```
 
-## Step 3.4 - Outcomes per life stage
+## Step 3.4 - Outcomes per life stage ✅ DONE (2026-11-20)
 
 Outcome scores are 0–10 (higher = better). Start each outcome at a neutral 7.0 baseline, subtract load contributions, add practice contributions, then apply a stage decay for the health-related outcomes in later stages under heavy loads (the ACE dose-response idea, kept simple and labeled ASSUMPTION). Longevity is scored once per run (whole life) as a band, never a single year number: map the final longevity score to bands (<45 / 45–55 / 55–65 / 65+) and report band probabilities.
 
