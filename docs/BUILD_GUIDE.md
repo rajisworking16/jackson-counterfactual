@@ -24,7 +24,8 @@
 
 **Commits (newest first):**
 ```
-Phase 1: research anchors doc (Gershoff, ACE, child-performer literature, sibling method)   (this commit)
+Phase 1: review fixes - dates, body-image evidence, sibling markers   (this commit)
+aeb161b Phase 1: research anchors doc (Gershoff, ACE, child-performer literature, sibling method)
 3fb2c34 Phase 1: sibling control group filled (9 siblings, sourced)
 e388b6f Phase 1: extend timeline batch 2 (verified events to 30-40 rows)
 4c6cad9 Phase 1: extend timeline batch 1 (verified events to ~20 rows)
