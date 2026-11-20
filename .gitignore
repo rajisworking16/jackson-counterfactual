@@ -11,3 +11,4 @@ data/outputs/*.csv
 !data/outputs/branch_probabilities.csv
 !data/outputs/longevity_bands.csv
 !data/outputs/sensitivity_actual.csv
+docs/PROJECT_UPDATE.md
