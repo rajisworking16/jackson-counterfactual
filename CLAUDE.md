@@ -57,7 +57,7 @@ python -m pytest tests/                # dashboard tests (pip install -r require
 
 ## Layout
 
-- `data/`: CSV datasets; every file stays clean enough to show an interviewer. `data/outputs/`: only `outcome_bands.csv`, `branch_probabilities.csv` and `longevity_bands.csv` are committed.
+- `data/`: CSV datasets; every file stays clean enough to show an interviewer. `data/outputs/`: only `outcome_bands.csv`, `branch_probabilities.csv`, `longevity_bands.csv` and `sensitivity_actual.csv` (10,000 runs per side) are committed.
 - `notebooks/`: one per phase (00 setup check, 01 dossier, 02 data model, 03 engine sandbox). Commit notebooks with outputs cleared.
 - `model/simulate.py`: the engine (03 notebook text says `engine.py`; the name is `simulate.py`).
 - `app/streamlit_app.py`: the 3-page dashboard (Phase 4).

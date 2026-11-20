@@ -6,7 +6,7 @@ A Monte Carlo scenario model that changes one input in Michael Jackson's documen
 
 ## Where it stands
 
-**19 of 22 build steps done.** Phases 0 to 3 are complete. Phases 0 to 4 are complete: the engine is calibrated and frozen, and the three-page Streamlit dashboard is built, tested and screenshotted. Phase 5 (README, sensitivity read, portfolio copy) is next.
+**19 of 22 build steps done.** Phases 0 to 4 are complete: the engine is calibrated and frozen, and the three-page Streamlit dashboard is built, tested and screenshotted. Phase 5 (README, sensitivity read, portfolio copy) is next.
 
 | Phase | Status | Progress |
 |---|---|---|

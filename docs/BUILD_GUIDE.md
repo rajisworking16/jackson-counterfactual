@@ -19,12 +19,13 @@
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
 | 3. Simulation engine | ✅ Done, calibration frozen (seeded engine, 10,000 runs; M12, bins, display rule, per-run baselines; censored sibling check) |
-| 4. Dashboard | ✅ Done. Three pages; 16 AppTest tests passing; headless run clean; screenshots in docs/screenshots/ |
-| 5. Write-up + ship | ⬜ Not started |
+| 4. Dashboard | ✅ Done (3 pages, 16 tests, screenshots; label and config fixes) |
+| 5. Write-up + ship | ⬜ Next: Step 5.1 (README) |
 
 **Commits (newest first):**
 ```
-Phase 4: dashboard polish + screenshots   (this commit)
+Phase 4: label and config fixes   (this commit)
+f9f5c54 Phase 4: dashboard polish + screenshots
 bc7c31d Phase 4: dashboard page 3 - assumptions register, sources, limitations
 5cbe745 Phase 4: dashboard page 2 - dials, branch cards, outcome bands
 4b02448 Phase 4: dashboard page 1 - documented timeline (Plotly)
@@ -71,7 +72,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** STOP at phase boundary. Then Phase 5, Step 5.1 (README). Step 5.2 needs real readers (hard stop).
+**Next step:** Step 5.1 README, then Step 5.3 portfolio copy. Stop before Step 5.2 (real readers).
 
 **Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 

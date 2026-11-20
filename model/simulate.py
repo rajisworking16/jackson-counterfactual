@@ -244,6 +244,8 @@ if __name__ == "__main__":
     pd.DataFrame(branch_rows).to_csv("data/outputs/branch_probabilities.csv", index=False)
     summarize(results).to_csv("data/outputs/outcome_bands.csv")
     longevity_bands(results).to_csv("data/outputs/longevity_bands.csv")
+    sens = sensitivity(PRESETS["Actual (documented)"], params, n=N_RUNS)  # published at 10,000 runs per side
+    sens.round(3).to_csv("data/outputs/sensitivity_actual.csv", index_label="dial")
     print(pd.DataFrame(branch_rows).round(3).to_string(index=False))
     print(longevity_bands(results).map(format_prob).to_string())
     print("Scenario bands under the stated assumptions, not a prediction.")

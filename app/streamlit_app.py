@@ -66,7 +66,7 @@ def page_timeline():
 LIVE_RUNS = 2_000
 SCORE_DIMS = [d for d in sim.DIMS if d != "Longevity"]  # Longevity is shown as bands only (Rule 5)
 BRANCHES = [("A_no_career", "A. No professional music career", "Music stays a gift, not a profession."),
-            ("B_late_healthy", "B. Fame with a lighter load", "A career arrives, often later, with less of the fear load."),
+            ("B_late_healthy", "B. Later fame, lighter load", "A career arrives, often later, with less of the fear load."),
             ("C_same_timeline", "C. Same timeline as documented", "Fame on the documented schedule, with the heavier load.")]
 
 
@@ -128,7 +128,7 @@ def page_dials():
             if r.short_name == "Body-image comments":
                 st.warning(f"Least-supported input with a large effect: {n_rows} timeline "
                            f"row{'s' if n_rows != 1 else ''} (TIME's paraphrase of the 1993 Oprah interview), yet moving "
-                           "it from 2 to 8 shifts median mental health by about 2.2 points in the sensitivity analysis.")
+                           "it from 2 to 8 shifts median mental health by about 2.2 points (published 10,000-run analysis).")
 
     values = tuple(st.session_state["dial::" + d] for d in sim.PRESETS["Actual (documented)"])
     branches, bands, longevity = run_engine(values)
