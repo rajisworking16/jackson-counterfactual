@@ -11,20 +11,21 @@
 
 ---
 
-## CURRENT STATUS (as of 2026-11-19)
+## CURRENT STATUS (as of 2026-11-20)
 
 | Phase | Status |
 |---|---|
 | 0. Setup | ✅ Done |
-| 1. Research dossier | ✅ Built + review fixes applied (33 events, 9 siblings with comparable markers, anchors doc). Awaiting Pranav's final check |
-| 2. Data model | ⬜ Not started. Waits for Pranav's go-ahead |
+| 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc; reviewed by Pranav) |
+| 2. Data model | 🟡 In progress. Step 2.1 ✅ life stages. Next: Step 2.2 |
 | 3. Simulation engine | ⬜ Not started |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Update CURRENT STATUS after Phase 1 review fixes   (this commit)
+Phase 2: life stages table for outcome scoring   (this commit)
+227dc15 Update CURRENT STATUS after Phase 1 review fixes
 6528744 Phase 1: review fixes - dates, body-image evidence, sibling markers
 aeb161b Phase 1: research anchors doc (Gershoff, ACE, child-performer literature, sibling method)
 3fb2c34 Phase 1: sibling control group filled (9 siblings, sourced)
@@ -38,22 +39,16 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 3b1af32 Phase 0: project scaffold - data schemas, starter datasets, notebooks
 ```
 
-**Review fixes (2026-11-20, commit 6528744):**
-- 1971: now the debut single, Oct 7, 1971. That date appears only on Wikipedia, with no citation, so the row stays Medium.
-- 1984: eight Grammys on Feb 28, 1984 (grammy.com, Guinness).
-- Body-image evidence: added from TIME 1993 (Medium, self_report yes).
-- `year_approx` column: yes on the 1964 row only.
-- 1988 split into the Moonwalk quotes (now with the belt quote) and the land purchase.
-- Siblings: new columns career_start / career_end / career_span_years / span_approx / self_direction_age / self_direction_basis / spoke_about_joseph / statement_direction.
+**Decisions made:**
+- 2026-11-19: `self_report`, `dial_links` / `outcome_links` split, `url` column. The age-check cell is Pranav's.
+- 2026-11-20: `year_approx` column. M15 Trauma -> Relationships added (ASSUMPTION), so the table has 29 parameter rows. P02, P07, P09, M06, M07 and M10 relabeled ASSUMPTION, because no source for them was read.
 
-**Decisions made (2026-11-19):** `self_report`, `dial_links` / `outcome_links` split, `url`; M15 Trauma -> Relationships goes in with Phase 2 (29 parameter rows); the age-check cell is Pranav's.
-
-**Open before Phase 2:**
-- Six RESEARCH labels (P02, P07, P09, M06, M07, M10) have no source read yet. Each needs a source or a switch to ASSUMPTION.
+**Open:**
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's self-direction year isn't in any source fetched.
+- Flag for Step 3.4: M02's range is negative but the outcome formula subtracts it, so a heavier financial-control load would *raise* career. Raise this with Pranav before Phase 3 code.
 
-**Next step:** STOP. Pranav checks the review fixes, then Phase 2 (Step 2.1).
+**Next step:** Step 2.2, parameters table (29 rows).
 
 **Hard stops still ahead:** Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -269,7 +264,7 @@ git commit -m "Phase 1: research anchors doc (Gershoff, ACE, child-performer lit
 **Goal:** lock the schemas the engine will read, and draw the mechanism map.
 **Session prompt:** "Help me design the CSV schemas for this model: life_events, sibling_outcomes, dials, outcome_dimensions. Show me the columns and 3 example rows each, then I will fill them."
 
-## Step 2.1 - Confirm the existing schemas (already in data/)
+## Step 2.1 - Confirm the existing schemas (already in data/) ✅ DONE (2026-11-20)
 
 - `dials.csv` - dial, actual_documented, counterfactual_preset, what_it_captures ✅ filled
 - `mediators.csv` - mediator, driven_by_dials, feeds_outcomes ✅ filled
