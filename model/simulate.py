@@ -114,3 +114,82 @@ def compute_outcomes(med, c, branch):
             row[dim] = clip(row[dim] - decay * m["Trauma / fear load"] * 0.3)
         staged[stage] = row
     return staged  # Longevity is whole-life: the same value at every stage
+
+
+def run_preset(name, dials, params, n=N_RUNS, seed=SEED):
+    rng = np.random.default_rng(seed)
+    rows, branches = [], []
+    for _ in range(n):
+        c = sample_params(params, rng)
+        med = compute_mediators(dials, c)
+        bp = branch_probabilities(med)
+        branches.append(bp)
+        branch = rng.choice(list(bp), p=list(bp.values()))
+        staged = compute_outcomes(med, c, branch)
+        for stage, outs in staged.items():
+            rows.append({"preset": name, "branch": branch, "stage": stage, **outs})
+    return pd.DataFrame(rows), pd.DataFrame(branches)
+
+
+def p10(s):
+    return s.quantile(0.10)
+
+
+def p90(s):
+    return s.quantile(0.90)
+
+
+DIMS = ["Career attainment", "Creative output & risk-taking", "Mental health",
+        "Physical health & appearance changes", "Relationships & family closeness", "Longevity"]
+
+
+def summarize(df):
+    return df.groupby(["preset", "stage"])[DIMS].agg(["median", p10, p90])
+
+
+# ASSUMPTION: how the 0-10 longevity score maps to lifespan bands. No study gives
+# this mapping; it is a stated convention, listed in the assumptions register.
+LONGEVITY_BINS = [0, 3, 5, 7, 10.0001]
+LONGEVITY_LABELS = ["<45", "45-55", "55-65", "65+"]
+
+
+def longevity_bands(df):
+    """Share of runs in each lifespan band, per preset. Longevity is whole-life,
+    so one stage is enough. Reported as band probabilities, never a single age."""
+    whole = df[df["stage"] == "Later"].reset_index(drop=True)
+    band = pd.cut(whole["Longevity"], bins=LONGEVITY_BINS, labels=LONGEVITY_LABELS,
+                  right=False, include_lowest=True)
+    return pd.crosstab(whole["preset"], band, normalize="index").reindex(columns=LONGEVITY_LABELS, fill_value=0.0)
+
+
+def sensitivity(dials, params, n=2000, seed=SEED):
+    """One-at-a-time: move each dial 2 -> 8, measure the shift in median Mental health and Career."""
+    out = {}
+    for dial in dials:
+        lo, hi = dict(dials), dict(dials)
+        lo[dial], hi[dial] = 2, 8
+        d_lo, _ = run_preset("lo", lo, params, n=n, seed=seed)
+        d_hi, _ = run_preset("hi", hi, params, n=n, seed=seed)
+        out[dial] = {
+            "mental_health_shift": d_hi["Mental health"].median() - d_lo["Mental health"].median(),
+            "career_shift": d_hi["Career attainment"].median() - d_lo["Career attainment"].median()}
+    return pd.DataFrame(out).T.sort_values("mental_health_shift", key=abs, ascending=False)
+
+
+if __name__ == "__main__":
+    import os
+    os.makedirs("data/outputs", exist_ok=True)
+    params = load_parameters()
+    all_df, branch_rows = [], []
+    for name, dials in PRESETS.items():
+        df, bp = run_preset(name, dials, params)
+        all_df.append(df)
+        branch_rows.append({"preset": name, **bp.mean().to_dict()})
+    results = pd.concat(all_df, ignore_index=True)
+    results.to_csv("data/outputs/simulation_results.csv", index=False)
+    pd.DataFrame(branch_rows).to_csv("data/outputs/branch_probabilities.csv", index=False)
+    summarize(results).to_csv("data/outputs/outcome_bands.csv")
+    longevity_bands(results).to_csv("data/outputs/longevity_bands.csv")
+    print(pd.DataFrame(branch_rows).round(3).to_string(index=False))
+    print(longevity_bands(results).round(3))
+    print("Saved to data/outputs/")

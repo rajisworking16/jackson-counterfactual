@@ -6,3 +6,7 @@ venv/
 .DS_Store
 .streamlit/secrets.toml
 .ipynb_checkpoints/
+data/outputs/*.csv
+!data/outputs/outcome_bands.csv
+!data/outputs/branch_probabilities.csv
+!data/outputs/longevity_bands.csv

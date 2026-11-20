@@ -18,13 +18,14 @@
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
-| 3. Simulation engine | 🟡 In progress. Steps 3.1-3.4 ✅. Next: Step 3.5 |
+| 3. Simulation engine | 🟡 Steps 3.1-3.5 ✅ (engine runs seeded, 10,000 runs). STOPPED before Step 3.6 |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 3: outcome scoring per life stage (6 dimensions, stage decay)   (this commit)
+Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results   (this commit)
+0ac8f63 Phase 3: outcome scoring per life stage (6 dimensions, stage decay)
 efdb998 Phase 3: career branch node (A/B/C) with discipline-warmth interaction
 0780166 Phase 3: mediator computation from dials (6 mediators, clipped 0-10)
 96cf388 Phase 3: engine skeleton - presets, seeded RNG, parameter sampler
@@ -61,7 +62,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** Step 3.5, Monte Carlo runner + sensitivity.
+**Next step:** HARD STOP before Step 3.6. Pranav reviews the 3.5 results, then Step 3.6: show the sibling comparison table + proposed parameter changes, apply only after a yes. Known issues to start from: Actual longevity 98.7% in <45 (documented age 50 is 45-55); Actual mental health on the floor (median 0.79 in Childhood, 0 by Later); Firm-but-nurturing mental health capped at the 7.0 baseline (p90 = 7.00).
 
 **Hard stops still ahead:** Step 3.6 (calibration approval: show the comparison table and proposed changes, apply only after Pranav says yes), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -553,7 +554,7 @@ git add model/simulate.py
 git commit -m "Phase 3: outcome scoring per life stage (6 dimensions, stage decay)"
 ```
 
-## Step 3.5 - The Monte Carlo runner + sensitivity
+## Step 3.5 - The Monte Carlo runner + sensitivity ✅ DONE (2026-11-20)
 
 ```python
 def run_preset(name, dials, params, n=N_RUNS, seed=SEED):
