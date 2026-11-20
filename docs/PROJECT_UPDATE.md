@@ -120,6 +120,7 @@ Details are in [calibration_notes.md](calibration_notes.md).
 | 2. Nurturing: Branch A rises but doesn't swallow everything | ✅ |
 | 3. Actual mental health clearly below Nurturing | ✅ (0.77 vs 6.85) |
 | No preset above ~95% in any longevity band | ✅ (max 89%) |
+| Actual puts age 50 in its most likely band | ❌ Fails (<45 is 40%, 45-55 is 30%). Accepted: the documented band was never a calibration target, and the death was acute, outside the chronic pathway. See calibration_notes.md |
 
 ## Basis labels
 

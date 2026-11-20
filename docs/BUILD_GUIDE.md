@@ -18,13 +18,14 @@
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
-| 3. Simulation engine | ✅ Done, **calibration frozen**. Seeded engine, 10,000 runs. Calibrated: M12, longevity bins, display rule, per-run baselines (6.0-8.0; Longevity 4.5-9.5 centered on 7.0). Censored sibling check; sensitivity on all outcomes |
-| 4. Dashboard | ⬜ Not started |
+| 3. Simulation engine | ✅ Done, calibration frozen (seeded engine, 10,000 runs; M12, bins, display rule, per-run baselines; censored sibling check) |
+| 4. Dashboard | 🟡 In progress. Step 4.1 ✅ (page 1, timeline). Next: Step 4.2 |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 3: center longevity baseline, freeze calibration   (this commit)
+Phase 4: dashboard page 1 - documented timeline (Plotly)   (this commit)
+2d2cd8d Phase 3: center longevity baseline, freeze calibration
 bd97601 Phase 3: calibration follow-up - baseline uncertainty, censored sibling check
 cf7adaa Phase 3: sensitivity covers all outcome dimensions
 3fac883 Phase 3: sibling calibration pass - notes + parameter adjustments
@@ -63,11 +64,11 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
   - Jermaine marked `use_in_calibration = no (proxy)`.
 
 **Open:**
+- The age-50 check fails under the frozen calibration (<45 is 40%, 45-55 is 30%). That's accepted; see docs/calibration_notes.md.
 - Jermaine's 2011 memoir hasn't been read.
-- Calibration is frozen: a change to any range, baseline, bin or profile needs a new reason (a fetched source or a found error), not a better fit. See docs/calibration_notes.md.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** STOP at phase boundary. Then Phase 4, Step 4.1 (dashboard page 1, documented timeline). Page 2 must apply format_prob and the saturation rule (saturation(): >20% of runs at 0 or 10 -> "score saturated under these assumptions").
+**Next step:** Step 4.2, dashboard page 2 (dials, branch cards, outcome bands).
 
 **Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -681,7 +682,7 @@ git commit -m "Phase 3: sibling calibration pass - notes + parameter adjustments
 **Goal:** `app/streamlit_app.py` - three pages. Same stack as the AI KPI Analyst.
 **Session prompt:** "Help me build the Streamlit dashboard: page 1 the real timeline, page 2 the dials and branch results, page 3 the assumptions register. One page at a time."
 
-## Step 4.1 - Page 1: The real timeline
+## Step 4.1 - Page 1: The real timeline ✅ DONE (2026-11-20)
 
 Load `life_events.csv`; a Plotly timeline (scatter: x = year, y = age, hover = event text, color by dial link). Header carries the one-line pitch and the scope statement. This page is 100% documented fact - no model output.
 

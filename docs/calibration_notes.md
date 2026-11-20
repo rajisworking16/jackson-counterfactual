@@ -130,3 +130,10 @@ Wherever a band on page 2 has **more than 20% of runs at exactly 0 or 10**, the 
 | 2. Nurturing: Branch A rises but doesn't swallow everything | Passes (A 0.287; B 0.606 is the largest) |
 | 3. Actual mental health clearly below Nurturing | Passes (median 0.77 vs 6.85) |
 | No preset above ~95% in any longevity band | Passes (max 89%) |
+| Actual puts age 50 in its most likely band (45-55) | **Fails** (<45 is 40%, 45-55 is 30%) |
+
+**Why the age-50 failure is accepted.** This check passed after A and B (63% in 45-55). It failed once E spread the longevity baseline, which moved part of Actual's mass into <45. It's accepted, and not tuned back, for four reasons:
+1. Michael's band was never a calibration target. The 45-55 match after A and B was a side effect of the brother correction.
+2. His death was an acute event (acute propofol intoxication, ruled a homicide) that the model's chronic longevity pathway doesn't represent. A chronic dose-response curve shouldn't be expected to land on an acute outcome.
+3. The 45-55 band still holds 30% of runs, so the documented band isn't ruled out.
+4. Calibration is frozen: pulling Actual back toward 45-55 would mean fitting one lifespan through an assumed profile.
