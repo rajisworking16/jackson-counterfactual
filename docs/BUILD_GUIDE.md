@@ -18,13 +18,14 @@
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
-| 3. Simulation engine | 🟡 In progress. Step 3.1 ✅. Next: Step 3.2 |
+| 3. Simulation engine | 🟡 In progress. Steps 3.1-3.2 ✅. Next: Step 3.3 |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 3: engine skeleton - presets, seeded RNG, parameter sampler   (this commit)
+Phase 3: mediator computation from dials (6 mediators, clipped 0-10)   (this commit)
+96cf388 Phase 3: engine skeleton - presets, seeded RNG, parameter sampler
 e41aff2 Phase 2: record conflicting Michael self-direction dates
 1c6851b Phase 2: fix M02 sign, P14 basis, dial and mediator text
 7cc3f59 Phase 2: mechanism map (dials -> mediators -> outcomes) + sign convention
@@ -58,7 +59,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** Step 3.2, mediators.
+**Next step:** Step 3.3, career branch node.
 
 **Hard stops still ahead:** Step 3.6 (calibration approval: show the comparison table and proposed changes, apply only after Pranav says yes), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -441,7 +442,7 @@ git add model/simulate.py
 git commit -m "Phase 3: engine skeleton - presets, seeded RNG, parameter sampler"
 ```
 
-## Step 3.2 - Mediators
+## Step 3.2 - Mediators ✅ DONE (2026-11-20)
 
 Mediators are computed from dials with the sampled coefficients. All mediators are 0–10 scales, clipped. Practice hours is a LEVEL (higher = more skill-building); the other five are LOADS (higher = heavier). Formulas (dial values are 0–10; divide by 10 to normalize):
 
