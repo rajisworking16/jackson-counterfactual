@@ -18,13 +18,14 @@
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
-| 3. Simulation engine | ⬜ Not started. Next: Step 3.1 |
+| 3. Simulation engine | 🟡 In progress. Step 3.1 ✅. Next: Step 3.2 |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 2: record conflicting Michael self-direction dates   (this commit)
+Phase 3: engine skeleton - presets, seeded RNG, parameter sampler   (this commit)
+e41aff2 Phase 2: record conflicting Michael self-direction dates
 1c6851b Phase 2: fix M02 sign, P14 basis, dial and mediator text
 7cc3f59 Phase 2: mechanism map (dials -> mediators -> outcomes) + sign convention
 ad3ff4e Phase 2: parameters table - 29 links with ranges and basis labels
@@ -57,7 +58,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** Phase 3, Steps 3.1-3.5 (sandbox first, then model/simulate.py). Stop before 3.6.
+**Next step:** Step 3.2, mediators.
 
 **Hard stops still ahead:** Step 3.6 (calibration approval: show the comparison table and proposed changes, apply only after Pranav says yes), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -396,7 +397,7 @@ git commit -m "Phase 2: mechanism map (dials -> mediators -> outcomes) + sign co
 **Dial keys:** if you split `dial_links` / `outcome_links` in Phase 1, the dial names in `life_events.csv` match the short dial labels only. The engine reads full dial names from `dials.csv`, so check Appendix B's key-string note.
 **Timing note:** this phase is deliberately synced to your Python lessons - do not race ahead of the concepts (functions, loops, dictionaries) as your course reaches them.
 
-## Step 3.1 - Presets and the parameter loader
+## Step 3.1 - Presets and the parameter loader ✅ DONE (2026-11-20)
 
 Create `model/simulate.py` with:
 
