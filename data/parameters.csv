@@ -11,7 +11,7 @@ P09,Emotional warmth & affection,Attachment & trust in adults,-0.60,-0.35,ASSUMP
 P10,Autonomy granted,Attachment & trust in adults,-0.30,-0.10,ASSUMPTION,"Agency in childhood -> trust"
 P11,Physical discipline intensity,Sleep & physical health,0.20,0.45,RESEARCH,"ACE: adversity -> sleep and somatic outcomes"
 P12,Normalcy (school peers play),Sleep & physical health,-0.35,-0.15,ASSUMPTION,"Routine/rest of a normal childhood"
-P13,Parental financial control,Financial independence timing,0.40,0.65,SIBLING CALIBRATION,"Joseph managed his children's careers into adulthood: Michael dropped him at 20-21 (1979), the other brothers in 1983, Janet at 19 (1985); see sibling_outcomes.csv self_direction_age"
+P13,Parental financial control,Financial independence timing,0.40,0.65,SIBLING CALIBRATION,"Joseph managed his children's careers into adulthood: Michael's split is 1979 or 1983 (sources conflict), the other brothers in 1983, Janet at 19 (1985); see sibling_outcomes.csv self_direction_age"
 P14,Autonomy granted,Financial independence timing,-0.35,-0.15,SIBLING CALIBRATION,"Janet as the comparison case: fired her father as manager in 1985 at 19 (WDET 2025); see sibling_outcomes.csv"
 M01,Practice hours & skill acquisition,Career attainment,0.45,0.70,SIBLING CALIBRATION,"Skill is the entry ticket in every sibling career"
 M02,Financial independence timing,Career attainment,0.05,0.25,ASSUMPTION,"Delay load lowers career; sign flipped so all load->outcome links are positive and subtracted"

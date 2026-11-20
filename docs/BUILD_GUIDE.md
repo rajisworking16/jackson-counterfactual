@@ -16,15 +16,16 @@
 | Phase | Status |
 |---|---|
 | 0. Setup | ✅ Done |
-| 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc; reviewed by Pranav) |
-| 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map; M02 sign, P13/P14 notes, dial and mediator text fixed) |
-| 3. Simulation engine | ⬜ Not started |
+| 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
+| 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
+| 3. Simulation engine | ⬜ Not started. Next: Step 3.1 |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 2: fix M02 sign, P14 basis, dial and mediator text   (this commit)
+Phase 2: record conflicting Michael self-direction dates   (this commit)
+1c6851b Phase 2: fix M02 sign, P14 basis, dial and mediator text
 7cc3f59 Phase 2: mechanism map (dials -> mediators -> outcomes) + sign convention
 ad3ff4e Phase 2: parameters table - 29 links with ranges and basis labels
 8ad5a33 Phase 2: life stages table for outcome scoring
@@ -44,16 +45,21 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 
 **Decisions made:**
 - 2026-11-19: `self_report`, `dial_links` / `outcome_links` split, `url` column. The age-check cell is Pranav's.
-- 2026-11-20: `year_approx` column. M15 Trauma -> Relationships added (ASSUMPTION), so the table has 29 parameter rows. P02, P07, P09, M06, M07 and M10 relabeled ASSUMPTION, because no source for them was read.
+- 2026-11-20:
+  - `year_approx` column.
+  - M15 added (ASSUMPTION), so the table has 29 rows.
+  - Six links relabeled RESEARCH -> ASSUMPTION.
+  - M02 range flipped to 0.05-0.25 (subtraction kept).
+  - Michael's self-direction recorded as 20-25 (1979 or 1983; sources conflict).
+  - Jermaine marked `use_in_calibration = no (proxy)`.
 
 **Open:**
 - Jermaine's 2011 memoir hasn't been read.
-- Janet self-direction: 1985 at 19 (WDET 2025). ET 2022 places the split before her second album; the two sources may not agree.
-- M02 resolved 2026-11-20: range flipped to 0.05-0.25, subtraction kept; every load->outcome link is now positive and subtracted (M04 still crosses zero on purpose).
+- Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** STOP. Pranav confirms, then Phase 3 (Step 3.1). Phase 3 is timed to his Python course: offer to let him write each function first.
+**Next step:** Phase 3, Steps 3.1-3.5 (sandbox first, then model/simulate.py). Stop before 3.6.
 
-**Hard stops still ahead:** Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
+**Hard stops still ahead:** Step 3.6 (calibration approval: show the comparison table and proposed changes, apply only after Pranav says yes), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
 **Every session starts with** (in Claude Code, CLAUDE.md tells it to run these checks itself):
 ```bash
@@ -308,7 +314,7 @@ P09,Emotional warmth & affection,Attachment & trust in adults,-0.60,-0.35,ASSUMP
 P10,Autonomy granted,Attachment & trust in adults,-0.30,-0.10,ASSUMPTION,"Agency in childhood -> trust"
 P11,Physical discipline intensity,Sleep & physical health,0.20,0.45,RESEARCH,"ACE: adversity -> sleep and somatic outcomes"
 P12,Normalcy (school peers play),Sleep & physical health,-0.35,-0.15,ASSUMPTION,"Routine/rest of a normal childhood"
-P13,Parental financial control,Financial independence timing,0.40,0.65,SIBLING CALIBRATION,"Joseph managed his children's careers into adulthood: Michael dropped him at 20-21 (1979), the other brothers in 1983, Janet at 19 (1985); see sibling_outcomes.csv self_direction_age"
+P13,Parental financial control,Financial independence timing,0.40,0.65,SIBLING CALIBRATION,"Joseph managed his children's careers into adulthood: Michael's split is 1979 or 1983 (sources conflict), the other brothers in 1983, Janet at 19 (1985); see sibling_outcomes.csv self_direction_age"
 P14,Autonomy granted,Financial independence timing,-0.35,-0.15,SIBLING CALIBRATION,"Janet as the comparison case: fired her father as manager in 1985 at 19 (WDET 2025); see sibling_outcomes.csv"
 M01,Practice hours & skill acquisition,Career attainment,0.45,0.70,SIBLING CALIBRATION,"Skill is the entry ticket in every sibling career"
 M02,Financial independence timing,Career attainment,0.05,0.25,ASSUMPTION,"Delay load lowers career; sign flipped so all load->outcome links are positive and subtracted"
