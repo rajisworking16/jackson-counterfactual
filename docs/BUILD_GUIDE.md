@@ -18,13 +18,14 @@
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
-| 3. Simulation engine | ✅ Done. Seeded engine, 10,000 runs; calibrated (M12, bins, display rule, per-run baselines E); censored sibling check; sensitivity on all outcomes |
+| 3. Simulation engine | ✅ Done, **calibration frozen**. Seeded engine, 10,000 runs. Calibrated: M12, longevity bins, display rule, per-run baselines (6.0-8.0; Longevity 4.5-9.5 centered on 7.0). Censored sibling check; sensitivity on all outcomes |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 3: calibration follow-up - baseline uncertainty, censored sibling check   (this commit)
+Phase 3: center longevity baseline, freeze calibration   (this commit)
+bd97601 Phase 3: calibration follow-up - baseline uncertainty, censored sibling check
 cf7adaa Phase 3: sensitivity covers all outcome dimensions
 3fac883 Phase 3: sibling calibration pass - notes + parameter adjustments
 c066725 Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results
@@ -63,9 +64,10 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 
 **Open:**
 - Jermaine's 2011 memoir hasn't been read.
+- Calibration is frozen: a change to any range, baseline, bin or profile needs a new reason (a fetched source or a found error), not a better fit. See docs/calibration_notes.md.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** STOP at phase boundary. Pranav decides the longevity-baseline centering (4.5-8.5 is centered on 6.5), then Phase 4 (Step 4.1, dashboard page 1).
+**Next step:** STOP at phase boundary. Then Phase 4, Step 4.1 (dashboard page 1, documented timeline). Page 2 must apply format_prob and the saturation rule (saturation(): >20% of runs at 0 or 10 -> "score saturated under these assumptions").
 
 **Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -652,13 +654,13 @@ git add model/simulate.py .gitignore data/outputs/.gitkeep data/outputs/branch_p
 git commit -m "Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results"
 ```
 
-## Step 3.6 - Calibration pass against the siblings ✅ DONE (2026-11-20, with follow-up)
+## Step 3.6 - Calibration pass against the siblings ✅ DONE, CALIBRATION FROZEN (2026-11-20)
 
 **What changed in 3.6** (full record in `docs/calibration_notes.md`):
 - M12 narrowed to 0.15-0.35 (SIBLING CALIBRATION).
 - Longevity bins 0-2 / 2-3.5 / 3.5-5 / 5+.
 - Display rule `format_prob` (never 0% or 100%).
-- Outcome baselines drawn per run (6.0-8.0; Longevity 4.5-8.5).
+- Outcome baselines drawn per run (6.0-8.0; Longevity 4.5-9.5, centered on 7.0).
 - Sibling profiles in `data/sibling_profiles.csv`, with a censored check for living siblings.
 
 The code blocks in Steps 3.4-3.5 above show the starter engine; `model/simulate.py` is the current version.
@@ -696,6 +698,7 @@ git commit -m "Phase 4: dashboard page 1 - documented timeline (Plotly)"
 - Outcome band chart: per dimension, median with p10–p90 whiskers (Plotly), stage selector.
 - Longevity shown only as band probabilities (<45 / 45–55 / 55–65 / 65+) in a plain table or bar, never a single age, countdown or slider (Rule 5).
 - Display rule (Step 3.6): never show a probability as 0% or 100%; use `format_prob` ("<1%" / ">99%").
+- Saturation rule (Step 3.6): wherever a band has more than 20% of runs at exactly 0 or 10, show "score saturated under these assumptions" next to it. Use `saturation()` in `model/simulate.py`. With the frozen calibration this applies to Actual's Mental health (24.9% of runs at 0 in Childhood, 55.1% by Later).
 - A visible line under every chart: "Scenario bands under the stated assumptions - not a prediction."
 
 ```bash

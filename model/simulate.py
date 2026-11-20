@@ -81,9 +81,11 @@ STAGE_DECAY = {"Childhood": 0.0, "Teen": 0.1, "Young adult": 0.2, "Peak": 0.35, 
 # ASSUMPTION (Step 3.6, option E): each outcome's baseline is drawn per run instead of
 # fixed at 7.0. The spread stands for everything outside the parenting variable.
 # Longevity gets a wider range: non-parenting factors such as acute events (his own
-# death among them) move lifespan a lot.
+# death among them) move lifespan a lot. Centered on 7.0, the B anchor (an ordinary
+# lifespan for a US man born in 1958). 4.5-9.5 is the narrowest centered range that
+# keeps every preset at or under ~95% in any band. Calibration is frozen here.
 BASELINE_RANGE = (6.0, 8.0)
-LONGEVITY_BASELINE_RANGE = (4.5, 8.5)
+LONGEVITY_BASELINE_RANGE = (4.5, 9.5)
 OUTCOMES = ["Career attainment", "Creative output & risk-taking", "Mental health",
             "Physical health & appearance changes", "Relationships & family closeness", "Longevity"]
 
@@ -205,6 +207,17 @@ def sensitivity(dials, params, n=2000, seed=SEED):
         row["longevity_65plus_pp"] = 100 * (b_hi["65+"] - b_lo["65+"])
         out[dial] = row
     return pd.DataFrame(out).T.sort_values("mental_health_shift", key=abs, ascending=False)
+
+
+SATURATION_THRESHOLD = 0.20
+SATURATION_NOTE = "score saturated under these assumptions"
+
+
+def saturation(scores, threshold=SATURATION_THRESHOLD):
+    """Phase 4 display rule: share of runs pinned at 0 or 10, and whether page 2
+    must show SATURATION_NOTE next to that band (more than 20% of runs pinned)."""
+    share = float(((scores == 0) | (scores == 10)).mean())
+    return share, share > threshold
 
 
 def format_prob(p):
