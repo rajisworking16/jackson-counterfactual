@@ -18,13 +18,14 @@
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
-| 3. Simulation engine | 🟡 In progress. 3.1-3.6 built; Step 3.6 follow-up under way (sibling profiles file, censored sibling check, baseline uncertainty E, test F) |
+| 3. Simulation engine | ✅ Done. Seeded engine, 10,000 runs; calibrated (M12, bins, display rule, per-run baselines E); censored sibling check; sensitivity on all outcomes |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 3: sensitivity covers all outcome dimensions   (this commit)
+Phase 3: calibration follow-up - baseline uncertainty, censored sibling check   (this commit)
+cf7adaa Phase 3: sensitivity covers all outcome dimensions
 3fac883 Phase 3: sibling calibration pass - notes + parameter adjustments
 c066725 Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results
 0ac8f63 Phase 3: outcome scoring per life stage (6 dimensions, stage decay)
@@ -64,7 +65,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** Finish the Step 3.6 follow-up, commit as "Phase 3: calibration follow-up - baseline uncertainty, censored sibling check", then STOP.
+**Next step:** STOP at phase boundary. Pranav decides the longevity-baseline centering (4.5-8.5 is centered on 6.5), then Phase 4 (Step 4.1, dashboard page 1).
 
 **Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -651,7 +652,16 @@ git add model/simulate.py .gitignore data/outputs/.gitkeep data/outputs/branch_p
 git commit -m "Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results"
 ```
 
-## Step 3.6 - Calibration pass against the siblings 🟡 FOLLOW-UP IN PROGRESS (2026-11-20)
+## Step 3.6 - Calibration pass against the siblings ✅ DONE (2026-11-20, with follow-up)
+
+**What changed in 3.6** (full record in `docs/calibration_notes.md`):
+- M12 narrowed to 0.15-0.35 (SIBLING CALIBRATION).
+- Longevity bins 0-2 / 2-3.5 / 3.5-5 / 5+.
+- Display rule `format_prob` (never 0% or 100%).
+- Outcome baselines drawn per run (6.0-8.0; Longevity 4.5-8.5).
+- Sibling profiles in `data/sibling_profiles.csv`, with a censored check for living siblings.
+
+The code blocks in Steps 3.4-3.5 above show the starter engine; `model/simulate.py` is the current version.
 
 Compare model bands to the sibling table: e.g., a low-exposure/high-autonomy profile (Janet-like dials: discipline ~5, warmth ~4, autonomy ~8) should produce career + relationships bands her documented outcome resembles; a high-exposure profile should resemble Michael's documented markers. Write the comparison in `docs/calibration_notes.md` - what matched, what didn't, which parameters you adjusted and why. This document is interview gold: it shows validation thinking.
 

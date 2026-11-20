@@ -78,31 +78,51 @@ def branch_probabilities(med):
 
 STAGE_DECAY = {"Childhood": 0.0, "Teen": 0.1, "Young adult": 0.2, "Peak": 0.35, "Later": 0.5}
 
+# ASSUMPTION (Step 3.6, option E): each outcome's baseline is drawn per run instead of
+# fixed at 7.0. The spread stands for everything outside the parenting variable.
+# Longevity gets a wider range: non-parenting factors such as acute events (his own
+# death among them) move lifespan a lot.
+BASELINE_RANGE = (6.0, 8.0)
+LONGEVITY_BASELINE_RANGE = (4.5, 8.5)
+OUTCOMES = ["Career attainment", "Creative output & risk-taking", "Mental health",
+            "Physical health & appearance changes", "Relationships & family closeness", "Longevity"]
+
+
+def sample_baselines(rng):
+    """One baseline per outcome for this run, drawn independently."""
+    out = {}
+    for dim in OUTCOMES:
+        lo, hi = LONGEVITY_BASELINE_RANGE if dim == "Longevity" else BASELINE_RANGE
+        out["BASE::" + dim] = rng.uniform(lo, hi)
+    return out
+
 
 def compute_outcomes(med, c, branch):
     """Mediators -> six outcomes (0-10, higher = better), per life stage.
     7.0 baseline (ASSUMPTION). Load -> outcome coefficients are positive and
-    subtracted; practice is added around a midpoint of 5."""
+    subtracted; practice is added around a midpoint of 5. Baselines come from
+    sample_baselines() in c; a missing one falls back to 7.0 (the midpoint tests)."""
     m = med
-    career = 7.0 + c["M01"] * (m["Practice hours & skill acquisition"] - 5) \
+    b = lambda dim: c.get("BASE::" + dim, 7.0)
+    career = b("Career attainment") + c["M01"] * (m["Practice hours & skill acquisition"] - 5) \
                  - c["M02"] * m["Financial independence timing"]
     if branch == "A_no_career":
         career = min(career, 3.0)          # normal-life ceiling on this dimension
-    creative = 7.0 + c["M03"] * (m["Practice hours & skill acquisition"] - 5) \
+    creative = b("Creative output & risk-taking") + c["M03"] * (m["Practice hours & skill acquisition"] - 5) \
                    - c["M04"] * m["Trauma / fear load"]
     if branch == "A_no_career":
         creative = min(creative, 4.5)      # music as a gift, not a profession
-    mental = 7.0 - c["M05"] * m["Trauma / fear load"] \
+    mental = b("Mental health") - c["M05"] * m["Trauma / fear load"] \
                  - c["M06"] * m["Self-image & body perception"] \
                  - c["M07"] * m["Attachment & trust in adults"]
-    physical = 7.0 - c["M08"] * m["Self-image & body perception"] \
+    physical = b("Physical health & appearance changes") - c["M08"] * m["Self-image & body perception"] \
                    - c["M09"] * m["Sleep & physical health"]
-    relations = 7.0 - c["M10"] * m["Attachment & trust in adults"] \
+    relations = b("Relationships & family closeness") - c["M10"] * m["Attachment & trust in adults"] \
                     - c["M11"] * m["Financial independence timing"] \
                     - c["M15"] * m["Trauma / fear load"]
-    longevity = 7.0 - c["M12"] * m["Trauma / fear load"] \
+    longevity = b("Longevity") - c["M12"] * m["Trauma / fear load"] \
                     - c["M13"] * m["Sleep & physical health"] \
-                    - c["M14"] * (7.0 - mental)
+                    - c["M14"] * (b("Mental health") - mental)
     clip = lambda x: float(np.clip(x, 0, 10))
     base = {"Career attainment": clip(career), "Creative output & risk-taking": clip(creative),
             "Mental health": clip(mental), "Physical health & appearance changes": clip(physical),
@@ -120,7 +140,7 @@ def run_preset(name, dials, params, n=N_RUNS, seed=SEED):
     rng = np.random.default_rng(seed)
     rows, branches = [], []
     for _ in range(n):
-        c = sample_params(params, rng)
+        c = {**sample_params(params, rng), **sample_baselines(rng)}
         med = compute_mediators(dials, c)
         bp = branch_probabilities(med)
         branches.append(bp)

@@ -52,9 +52,9 @@ Most links are ASSUMPTION, and that's stated plainly. Six of them (P02, P07, P09
 - **Dials** run 0 to 10. The engine divides by 10 before applying coefficients.
 - **Mediators** run 0 to 10 and are clipped. Five are **loads**, where higher means heavier: Trauma / fear load, Self-image & body perception, Attachment & trust in adults (higher = more distrust), Sleep & physical health (higher = worse), and Financial independence timing (higher = later independence). Practice hours & skill acquisition is a **level**, where higher means more skill-building.
 - **Warmth reduces loads.** Its coefficients (P02, P08, P09) are negative, and so are P10, P12 and P14.
-- **Outcomes** run 0 to 10, where higher means a better outcome. Each starts at a 7.0 baseline (ASSUMPTION). A positive coefficient on a load-to-outcome link is applied as a subtraction, and practice is applied as an addition around a midpoint of 5.
+- **Outcomes** run 0 to 10, where higher means a better outcome. Each starts at a baseline drawn per run (6.0-8.0; Longevity 4.5-8.5, ASSUMPTION, since Step 3.6) that stands for everything outside the parenting variable. 7.0 is the reference midpoint: an ordinary lifespan for a US man born in 1958 (life expectancy 66.6, CDC/NCHS). A positive coefficient on a load-to-outcome link is applied as a subtraction, and practice is applied as an addition around a midpoint of 5.
 - **M04 crosses zero** (-0.10 to 0.25) on purpose. Pain fed some of the art and suppressed some of it, and the range carries that uncertainty instead of picking a side.
-- **M14 starts from an outcome, not a mediator.** Mental health feeds Longevity as a load, `7.0 - mental`.
+- **M14 starts from an outcome, not a mediator.** Mental health feeds Longevity as a load: `mental baseline - mental` for that run.
 
 - **Every load-to-outcome link is positive and subtracted.** M02 used to be the exception: its range was -0.25 to -0.05, so subtracting it meant a later financial independence *raised* career attainment. On 2026-11-20 its range was flipped to 0.05 to 0.25 and the subtraction kept, so a heavier delay load lowers career like every other load. M04 is the only load-to-outcome range that still crosses zero, on purpose.
 
@@ -64,7 +64,7 @@ These go into the assumptions register (dashboard page 3) next to the 29 links.
 
 | Number | Where | Basis |
 |---|---|---|
-| 7.0 outcome baseline | every outcome | ASSUMPTION |
+| Outcome baseline per run: 6.0-8.0 (Longevity 4.5-8.5); 7.0 reference | every outcome | ASSUMPTION (Step 3.6, option E) |
 | 0.25 practice intercept | Practice hours | ASSUMPTION |
 | 0.55 attachment intercept | Attachment & trust | ASSUMPTION |
 | Logistic midpoint 5.5, scale 1.2 | career branch (fame likelihood) | ASSUMPTION |
