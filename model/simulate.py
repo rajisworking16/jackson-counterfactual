@@ -149,7 +149,9 @@ def summarize(df):
 
 # ASSUMPTION: how the 0-10 longevity score maps to lifespan bands. No study gives
 # this mapping; it is a stated convention, listed in the assumptions register.
-LONGEVITY_BINS = [0, 3, 5, 7, 10.0001]
+# Step 3.6: was [0, 3, 5, 7, 10]. The score can't exceed the 7.0 baseline, so the
+# old top band (7+) was only reachable with zero load; bins now span reachable scores.
+LONGEVITY_BINS = [0, 2, 3.5, 5, 10.0001]
 LONGEVITY_LABELS = ["<45", "45-55", "55-65", "65+"]
 
 
@@ -176,6 +178,16 @@ def sensitivity(dials, params, n=2000, seed=SEED):
     return pd.DataFrame(out).T.sort_values("mental_health_shift", key=abs, ascending=False)
 
 
+def format_prob(p):
+    """Display rule (Step 3.6): never show a band as 0% or 100%. Model shares are
+    scenario bands under stated assumptions, not certainties."""
+    if p < 0.01:
+        return "<1%"
+    if p > 0.99:
+        return ">99%"
+    return f"{p:.0%}"
+
+
 if __name__ == "__main__":
     import os
     os.makedirs("data/outputs", exist_ok=True)
@@ -191,5 +203,6 @@ if __name__ == "__main__":
     summarize(results).to_csv("data/outputs/outcome_bands.csv")
     longevity_bands(results).to_csv("data/outputs/longevity_bands.csv")
     print(pd.DataFrame(branch_rows).round(3).to_string(index=False))
-    print(longevity_bands(results).round(3))
+    print(longevity_bands(results).map(format_prob).to_string())
+    print("Scenario bands under the stated assumptions, not a prediction.")
     print("Saved to data/outputs/")

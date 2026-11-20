@@ -24,7 +24,7 @@ M08,Self-image & body perception,Physical health & appearance changes,0.35,0.65,
 M09,Sleep & physical health,Physical health & appearance changes,0.30,0.55,RESEARCH,"ACE/sleep -> somatic health"
 M10,Attachment & trust in adults,Relationships & family closeness,0.40,0.65,ASSUMPTION,"Attachment predicts adult relationship quality; no source read yet (was RESEARCH)"
 M11,Financial independence timing,Relationships & family closeness,0.10,0.35,ASSUMPTION,"Money control entangled family conflict (documented disputes)"
-M12,Trauma / fear load,Longevity,0.35,0.65,RESEARCH,"ACE: adversity count -> lifespan (dose-response)"
+M12,Trauma / fear load,Longevity,0.15,0.35,SIBLING CALIBRATION,"Direction from ACE dose-response; size narrowed in Step 3.6 (was 0.35-0.65 RESEARCH) because trauma also reaches longevity through mental health (M05 -> M14), and brothers with Actual-like exposure lived past 65"
 M13,Sleep & physical health,Longevity,0.25,0.50,RESEARCH,"Sleep/health load -> mortality risk"
 M14,Mental health,Longevity,0.20,0.45,RESEARCH,"Mental-health load -> longevity, incl. medication pathways"
 M15,Trauma / fear load,Relationships & family closeness,0.10,0.35,ASSUMPTION,"Fear load strains family trust; size assumed"

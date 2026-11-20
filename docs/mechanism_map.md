@@ -41,8 +41,8 @@ flowchart LR
 
 | Basis | Links | Count |
 |---|---|---|
-| RESEARCH | P01, P11, M05, M09, M12, M13, M14 | 7 |
-| SIBLING CALIBRATION | P04, P13, P14, M01 | 4 |
+| RESEARCH | P01, P11, M05, M09, M13, M14 | 6 |
+| SIBLING CALIBRATION | P04, P13, P14, M01, M12 | 5 |
 | ASSUMPTION | P02, P03, P05, P06, P07, P08, P09, P10, P12, M02, M03, M04, M06, M07, M08, M10, M11, M15 | 18 |
 
 Most links are ASSUMPTION, and that's stated plainly. Six of them (P02, P07, P09, M06, M07, M10) were relabeled from RESEARCH on 2026-11-20, because no source for them was read. `docs/research_anchors.md` lists what backs each RESEARCH link.
@@ -70,7 +70,7 @@ These go into the assumptions register (dashboard page 3) next to the 29 links.
 | Logistic midpoint 5.5, scale 1.2 | career branch (fame likelihood) | ASSUMPTION |
 | Branch C share clipped to 0.15-0.90 | career branch | ASSUMPTION |
 | Stage decay 0 / 0.1 / 0.2 / 0.35 / 0.5 | Mental and Physical health by life stage | ASSUMPTION |
-| Longevity bins 0-3 / 3-5 / 5-7 / 7-10 = <45 / 45-55 / 55-65 / 65+ | longevity bands | ASSUMPTION |
+| Longevity bins 0-2 / 2-3.5 / 3.5-5 / 5+ = <45 / 45-55 / 55-65 / 65+ (Step 3.6; was 0-3 / 3-5 / 5-7 / 7+) | longevity bands | ASSUMPTION |
 
 ## The branch interaction
 

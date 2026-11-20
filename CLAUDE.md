@@ -10,7 +10,7 @@ Portfolio project for Pranav (Sai Pranav Raj Kandula), MS Business Analytics & A
 2. **Source everything about Michael from his own words and the documented record:** *Moonwalk*, his interviews, court records, sibling accounts. Never invent trauma details or private facts.
 3. **Joseph stays three-dimensional.** The harshness caused documented harm AND was entangled with the discipline that made the Jackson 5. No cartoon villain.
 4. **The criminal allegations are out of scope.** The model covers the parenting variable and its documented downstream effects only. Don't add a 2005 row. State the scope wherever limits are described (README, dashboard page 3).
-5. **No death gamification.** The 2009 death is a documented outcome, handled soberly: band probabilities only, never a score, countdown, slider or single predicted age.
+5. **No death gamification.** The 2009 death is a documented outcome, handled soberly: band probabilities only, never a score, countdown, slider or single predicted age. Display rule: never show any model probability as 0% or 100%; use `format_prob` in `model/simulate.py` ("<1%" / ">99%").
 6. **Every parameter carries a basis label:** RESEARCH / SIBLING CALIBRATION / ASSUMPTION. No silent numbers. A number without a basis label doesn't ship.
 
 ## How to work in this repo

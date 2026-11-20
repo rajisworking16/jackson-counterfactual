@@ -35,7 +35,7 @@ Two limits: the sample is mostly middle-class HMO members, and ACEs are counted 
 
 Sources read: [CDC, About the CDC-Kaiser ACE Study](https://www.cdc.gov/violenceprevention/aces/about.html); [CDC press release, May 14, 1998](https://archive.cdc.gov/www_cdc_gov/media/pressrel/r980514.htm); [Felitti (2002), *Permanente Journal* 6(1), "Turning Gold into Lead"](https://pmc.ncbi.nlm.nih.gov/articles/PMC6220625).
 
-*Used for: P11 (Discipline → Sleep & physical health), M05 (Trauma → Mental health), M09 (Sleep & physical health → Physical health), M12 (Trauma → Longevity), M13 (Sleep & physical health → Longevity), M14 (Mental health → Longevity).*
+*Used for: P11 (Discipline → Sleep & physical health), M05 (Trauma → Mental health), M09 (Sleep & physical health → Physical health), M12 (Trauma → Longevity; direction only since Step 3.6, its size now comes from sibling calibration), M13 (Sleep & physical health → Longevity), M14 (Mental health → Longevity).*
 
 ## 3. Child-performer outcomes
 
@@ -51,7 +51,7 @@ Nine children grew up in the same house with the same father, but their exposure
 
 The check: run the model on dial settings that match each sibling's documented exposure. If it produces an outcome band that no sibling at similar exposure resembles, the range is wrong, not the sibling. This is a sanity check, not a measurement: nine people is a tiny sample, and the record is public careers and public statements, not private wellbeing. The comparison is written up in `docs/calibration_notes.md` (Step 3.6).
 
-*Used for: every range, as a check. It's the basis for the links labeled SIBLING CALIBRATION (P04, P13, P14, M01).*
+*Used for: every range, as a check. It's the basis for the links labeled SIBLING CALIBRATION (P04, P13, P14, M01, M12).*
 
 ## Relabeled to ASSUMPTION (2026-11-20)
 
@@ -66,4 +66,4 @@ The starter parameter table labeled these links RESEARCH, but none of the anchor
 | M07 Attachment → Mental health | Attachment literature | No source read |
 | M10 Attachment → Relationships | Attachment literature | No source read |
 
-The remaining RESEARCH links are P01, P11, M05, M09, M12, M13 and M14, all backed by anchors 1 and 2.
+The remaining RESEARCH links are P01, P11, M05, M09, M13 and M14, all backed by anchors 1 and 2. M12 moved to SIBLING CALIBRATION in Step 3.6.

@@ -18,13 +18,14 @@
 | 0. Setup | ✅ Done |
 | 1. Research dossier | ✅ Done (33 events, 9 siblings, anchors doc) |
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
-| 3. Simulation engine | 🟡 Steps 3.1-3.5 ✅ (engine runs seeded, 10,000 runs). STOPPED before Step 3.6 |
+| 3. Simulation engine | ✅ Done. Engine seeded at 10,000 runs; calibrated against siblings (M12 narrowed, longevity bins re-spanned, display rule). Actual puts 63% of runs in 45-55 (documented age 50) |
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
 **Commits (newest first):**
 ```
-Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results   (this commit)
+Phase 3: sibling calibration pass - notes + parameter adjustments   (this commit)
+c066725 Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results
 0ac8f63 Phase 3: outcome scoring per life stage (6 dimensions, stage decay)
 efdb998 Phase 3: career branch node (A/B/C) with discipline-warmth interaction
 0780166 Phase 3: mediator computation from dials (6 mediators, clipped 0-10)
@@ -62,9 +63,9 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 - Jermaine's 2011 memoir hasn't been read.
 - Janet's split date: WDET says 1985; ET 2022 places it before her second album.
 
-**Next step:** HARD STOP before Step 3.6. Pranav reviews the 3.5 results, then Step 3.6: show the sibling comparison table + proposed parameter changes, apply only after a yes. Known issues to start from: Actual longevity 98.7% in <45 (documented age 50 is 45-55); Actual mental health on the floor (median 0.79 in Childhood, 0 by Later); Firm-but-nurturing mental health capped at the 7.0 baseline (p90 = 7.00).
+**Next step:** STOP at phase boundary. Pranav reviews docs/calibration_notes.md, then Phase 4 (Step 4.1, dashboard page 1).
 
-**Hard stops still ahead:** Step 3.6 (calibration approval: show the comparison table and proposed changes, apply only after Pranav says yes), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
+**Hard stops still ahead:** Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
 **Every session starts with** (in Claude Code, CLAUDE.md tells it to run these checks itself):
 ```bash
@@ -332,7 +333,7 @@ M08,Self-image & body perception,Physical health & appearance changes,0.35,0.65,
 M09,Sleep & physical health,Physical health & appearance changes,0.30,0.55,RESEARCH,"ACE/sleep -> somatic health"
 M10,Attachment & trust in adults,Relationships & family closeness,0.40,0.65,ASSUMPTION,"Attachment predicts adult relationship quality; no source read yet (was RESEARCH)"
 M11,Financial independence timing,Relationships & family closeness,0.10,0.35,ASSUMPTION,"Money control entangled family conflict (documented disputes)"
-M12,Trauma / fear load,Longevity,0.35,0.65,RESEARCH,"ACE: adversity count -> lifespan (dose-response)"
+M12,Trauma / fear load,Longevity,0.15,0.35,SIBLING CALIBRATION,"Direction from ACE dose-response; size narrowed in Step 3.6 (was 0.35-0.65 RESEARCH) because trauma also reaches longevity through mental health (M05 -> M14), and brothers with Actual-like exposure lived past 65"
 M13,Sleep & physical health,Longevity,0.25,0.50,RESEARCH,"Sleep/health load -> mortality risk"
 M14,Mental health,Longevity,0.20,0.45,RESEARCH,"Mental-health load -> longevity, incl. medication pathways"
 M15,Trauma / fear load,Relationships & family closeness,0.10,0.35,ASSUMPTION,"Fear load strains family trust; size assumed"
@@ -584,7 +585,7 @@ def summarize(df):
 
 # ASSUMPTION: how the 0-10 longevity score maps to lifespan bands. No study gives
 # this mapping; it is a stated convention, listed in the assumptions register.
-LONGEVITY_BINS = [0, 3, 5, 7, 10.0001]
+LONGEVITY_BINS = [0, 2, 3.5, 5, 10.0001]  # Step 3.6: was [0, 3, 5, 7, 10.0001]
 LONGEVITY_LABELS = ["<45", "45-55", "55-65", "65+"]
 
 def longevity_bands(df):
@@ -637,7 +638,7 @@ Run it: `python model/simulate.py`. **Sanity checks before you believe anything:
 | Strict coach, warm father | 0.211 | 0.643 | 0.146 |
 | Firm but nurturing | 0.285 | 0.608 | 0.107 |
 
-Checks 2 and 3 pass. Check 1 partly passes: C is the largest branch, but A at 12% isn't "near zero." **Known issue for Step 3.6, do not fix early:** the Actual preset's Mental health (median ~0.8) and Longevity (median 1.0) scores sit at the 0-10 floor even in Childhood. Clipped scores can't move, so sensitivity results for that preset will look flat. That's a calibration problem (the 7.0 baseline minus several large load terms), and it gets fixed in Step 3.6, with the reason written in `calibration_notes.md`. The same floor puts 98.6% of Actual runs in the `<45` longevity band, while the documented outcome is age 50 (`45-55`). A model that can't reproduce the real timeline under the Actual preset isn't calibrated, so this goes first in Step 3.6. Sensitivity on the Actual preset (500 runs) currently ranks warmth (+3.0 mental health), discipline (-2.4) and body-image comments (-2.3) as the top movers; normalcy and financial control show 0.0 for mental health, as they should, since neither feeds it.
+Checks 2 and 3 pass. Check 1 partly passes: C is the largest branch, but A at 12% isn't "near zero." **Known issue for Step 3.6, do not fix early:** the Actual preset's Mental health (median ~0.8) and Longevity (median 1.0) scores sit at the 0-10 floor even in Childhood. Clipped scores can't move, so sensitivity results for that preset will look flat. That's a calibration problem (the 7.0 baseline minus several large load terms), and it gets fixed in Step 3.6, with the reason written in `calibration_notes.md`. The same floor puts 98.6% of Actual runs in the `<45` longevity band, while the documented outcome is age 50 (`45-55`). A model that can't reproduce the real timeline under the Actual preset isn't calibrated, so this goes first in Step 3.6. **Resolved in Step 3.6 (2026-11-20):** M12 narrowed and the longevity bins re-spanned; Actual now puts 63% of runs in `45-55`. See `docs/calibration_notes.md`. Sensitivity on the Actual preset (500 runs) currently ranks warmth (+3.0 mental health), discipline (-2.4) and body-image comments (-2.3) as the top movers; normalcy and financial control show 0.0 for mental health, as they should, since neither feeds it.
 
 Outputs are regenerated on every run, so only the three published results get committed; the 10k-row `simulation_results.csv` stays out of Git.
 
@@ -649,7 +650,7 @@ git add model/simulate.py .gitignore data/outputs/.gitkeep data/outputs/branch_p
 git commit -m "Phase 3: Monte Carlo runner (10k runs, seeded) + sensitivity + first results"
 ```
 
-## Step 3.6 - Calibration pass against the siblings
+## Step 3.6 - Calibration pass against the siblings ✅ DONE (2026-11-20)
 
 Compare model bands to the sibling table: e.g., a low-exposure/high-autonomy profile (Janet-like dials: discipline ~5, warmth ~4, autonomy ~8) should produce career + relationships bands her documented outcome resembles; a high-exposure profile should resemble Michael's documented markers. Write the comparison in `docs/calibration_notes.md` - what matched, what didn't, which parameters you adjusted and why. This document is interview gold: it shows validation thinking.
 
@@ -683,6 +684,7 @@ git commit -m "Phase 4: dashboard page 1 - documented timeline (Plotly)"
 - Branch cards: A / B / C with probability % and a one-line description each.
 - Outcome band chart: per dimension, median with p10–p90 whiskers (Plotly), stage selector.
 - Longevity shown only as band probabilities (<45 / 45–55 / 55–65 / 65+) in a plain table or bar, never a single age, countdown or slider (Rule 5).
+- Display rule (Step 3.6): never show a probability as 0% or 100%; use `format_prob` ("<1%" / ">99%").
 - A visible line under every chart: "Scenario bands under the stated assumptions - not a prediction."
 
 ```bash
