@@ -20,11 +20,12 @@
 | 2. Data model | ✅ Done (life stages, 29 parameters, mechanism map, review fixes) |
 | 3. Simulation engine | ✅ Done, calibration frozen (seeded engine, 10,000 runs; M12, bins, display rule, per-run baselines; censored sibling check) |
 | 4. Dashboard | ✅ Done (3 pages, 16 tests, screenshots; label and config fixes) |
-| 5. Write-up + ship | 🟡 Steps 5.1 ✅ README, 5.3 ✅ portfolio copy (drafts). Step 5.2 waits for real readers |
+| 5. Write-up + ship | 🟡 Steps 5.1 ✅ README, 5.3 ✅ portfolio copy (drafts, pre-read fixes in). Step 5.2 waits for real readers |
 
 **Commits (newest first):**
 ```
-Phase 5: portfolio card copy + LinkedIn post draft   (this commit)
+Phase 5: pre-read copy fixes   (this commit)
+c738561 Phase 5: portfolio card copy + LinkedIn post draft
 bee8dcc Phase 5: README - method, findings, limitations, run instructions
 46fd9f2 Phase 4: label and config fixes
 f9f5c54 Phase 4: dashboard polish + screenshots

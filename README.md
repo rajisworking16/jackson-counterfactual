@@ -23,7 +23,7 @@ The full map is in [docs/mechanism_map.md](docs/mechanism_map.md). The research 
 
 Nine children grew up in the same house with the same father, and their exposure varied. Michael was lead singer from childhood. Rebbie and La Toya weren't in the group. Randy joined later. Janet was the youngest, and her father managed her until she was 19.
 
-Their public record (careers, their own statements about Joseph, lifespan to date) is in `data/sibling_outcomes.csv`. Eight sibling-like dial profiles (all ASSUMPTION) were run through the model. Two ranges and the longevity mapping were changed as a result, and then calibration was frozen. The full write-up is in [docs/calibration_notes.md](docs/calibration_notes.md).
+Their public views of Joseph vary. Jackie has said "My father was the one who cracked the whip"; Janet has said her father "drove me to be the best that I can"; and Michael told the Oxford Union in 2001, "He pushed me because he loved me." Their public record (careers, their own statements about Joseph, lifespan to date) is in `data/sibling_outcomes.csv`. Eight sibling-like dial profiles (all ASSUMPTION) were run through the model. Two ranges and the longevity mapping were changed as a result, and then calibration was frozen. The full write-up is in [docs/calibration_notes.md](docs/calibration_notes.md).
 
 ## Findings (bands under the stated assumptions)
 

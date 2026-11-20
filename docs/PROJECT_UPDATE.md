@@ -1,6 +1,6 @@
 # Project Update: The Jackson Trajectory
 
-**As of:** 2026-11-20 · **Branch:** `main`
+**As of:** 2026-11-20 · **Branch:** `main` · **Latest commit on GitHub:** see `git log` ("Phase 5: pre-read copy fixes")
 
 A Monte Carlo scenario model that changes one input in Michael Jackson's documented life (his father's parenting style) and maps how the trajectory branches. It's a scenario model, not a prediction. The full plan is in [BUILD_GUIDE.md](BUILD_GUIDE.md).
 
@@ -180,6 +180,14 @@ The fixed numbers (baselines, intercepts, branch logistic, stage decay, bins) ar
   - LinkedIn post, which attaches the real screenshots
   - 60-second interview answer covering where the model fails and why calibration stopped
 - **[docs/sensitivity_read.md](sensitivity_read.md)**: a one-page brief for the 2-3 readers, with the one question, links, how to run the app, and a notes table.
+
+## Pre-read copy fixes (committed: "Phase 5: pre-read copy fixes")
+
+| Fix | Status |
+|---|---|
+| LinkedIn bullet in `portfolio_copy.md` now says "In the model…" and names the assumption behind the 12% → 68% figure (fear-driven practice built much of his skill) | ✅ Done |
+| README "The control group" gains one sentence showing the siblings' public views of Joseph vary. It quotes Jackie ("My father was the one who cracked the whip"), Janet ("drove me to be the best that I can") and Michael at Oxford, 2001 ("He pushed me because he loved me"), each checked against its source row | ✅ Done |
+| Resume bullet replaced with Pranav's two-sentence version (Monte Carlo model; 33 events, 9-sibling control group, 29 basis-labeled parameters, 10,000 seeded runs; directed AI-assisted implementation, made every calibration call), keeping "add only once live" | ✅ Done |
 
 ## Next
 

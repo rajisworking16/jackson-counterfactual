@@ -10,7 +10,7 @@ Drafts for the portfolio card, resume, LinkedIn and interviews. None of this goe
 
 ## Resume bullet (add only once live)
 
-> Designed and validated a counterfactual scenario model (Python, NumPy, Streamlit) that maps how one changed input, parenting style, branches a documented life. Built on 33 sourced events, a 9-sibling control group and 29 parameters, each labeled research, calibration or assumption, run as a 10,000-run seeded Monte Carlo with 16 automated dashboard tests. Made every calibration decision, including when to stop calibrating to avoid overfitting. Implementation was AI-assisted (Claude Code).
+> Designed and validated a Monte Carlo scenario model (Python, NumPy, Streamlit) of how one changed input, parenting style, branches a documented life: 33 sourced events, a 9-sibling control group, 29 basis-labeled parameters, 10,000 seeded runs. Directed AI-assisted implementation and made every calibration call, including freezing it to avoid overfitting.
 
 ## LinkedIn post
 
@@ -23,7 +23,7 @@ Attach the real dashboard screenshots, untouched: `docs/screenshots/page2_dials_
 > The model changes one thing, his father's parenting style, and runs 10,000 simulations. Each run draws every effect size from a range. Each range is labeled: backed by published research, checked against the siblings, or a stated assumption. Most are assumptions, and the dashboard says so.
 >
 > What it shows, as ranges under those assumptions:
-> - Lowering discipline alone raises the share of runs with no music career from 12% to 68%. Add warmth and autonomy, and it's 29%.
+> - In the model, lowering discipline alone raises the share of runs with no music career from 12% to 68%, because the model assumes fear-driven practice built much of his skill. Add warmth and autonomy, and it's 29%.
 > - No single dial matters most. Discipline drives career and longevity; warmth drives mental health and relationships.
 >
 > Where it falls short, and I think that's the more useful part:
