@@ -16,7 +16,7 @@
 | Phase | Status |
 |---|---|
 | 0. Setup | ✅ Done |
-| 1. Research dossier | 🟡 In progress. Step 1.1 ✅. Step 1.2 ✅ (31 rows). Next: Step 1.3 |
+| 1. Research dossier | 🟡 In progress. Step 1.1 ✅. Steps 1.1-1.3 ✅ (31 events, 9 siblings). Next: Step 1.4 |
 | 2. Data model | ⬜ Not started |
 | 3. Simulation engine | ⬜ Not started |
 | 4. Dashboard | ⬜ Not started |
@@ -24,7 +24,8 @@
 
 **Commits (newest first):**
 ```
-Phase 1: extend timeline batch 2 (verified events to 30-40 rows)   (this commit)
+Phase 1: sibling control group filled (9 siblings, sourced)   (this commit)
+e388b6f Phase 1: extend timeline batch 2 (verified events to 30-40 rows)
 4c6cad9 Phase 1: extend timeline batch 1 (verified events to ~20 rows)
 e5a8a6c Phase 1: spine complete - 12 rows sourced
 a2fdac8 Phase 1: add self_report flag, split dial_links / outcome_links
@@ -36,7 +37,7 @@ c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 
 **Decisions made (2026-11-19):** `self_report` column; `dial_links` (short dial names from `dials.csv` `short_name`) split from `outcome_links`; `url` column; M15 Trauma -> Relationships added in Phase 2 (29 parameter rows); age-check cell left for Pranav. The spine commit message drops "age check added" because the cell is still his to write.
 
-**Next step:** Step 1.3, fill the sibling control group.
+**Next step:** Step 1.4, research anchors doc.
 
 **Hard stops in the end-to-end run:** end of Phase 1 (row-by-row review), Step 3.6 (calibration approval), Step 5.2 (real readers). The v1.0 tag and repo visibility are Pranav's.
 
@@ -220,7 +221,7 @@ git add data/life_events.csv
 git commit -m "Phase 1: extend timeline batch 2 (verified events to 30-40 rows)"
 ```
 
-## Step 1.3 - Fill the sibling control group
+## Step 1.3 - Fill the sibling control group ✅ DONE (2026-11-19)
 
 For each of the 9 rows in `sibling_outcomes.csv`, fill `career_path`, `public_wellbeing_markers`, and `source`. Keep every entry to documented public record: careers (solo/group success, longevity in the industry), public statements about Joseph and their childhood (several siblings have spoken on the record - use their own words where possible), and broad public-life markers. No speculation about private mental health. The analytical point: exposure varied (Rebbie left earliest; Janet got a later-era Joseph and self-steered from 18; Michael had maximum exposure as lead singer and focal point) - that spread is what calibrates the model in Phase 3.
 
