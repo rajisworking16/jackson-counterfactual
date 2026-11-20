@@ -22,17 +22,12 @@
 | 4. Dashboard | ⬜ Not started |
 | 5. Write-up + ship | ⬜ Not started |
 
-**On GitHub right now (2 commits):**
+**Commits (newest first; the top one is this status update's own commit, hash shown by `git log`):**
 ```
+Phase 1: source 1979, 1984, 1993 rows
+6979ea9 Add CLAUDE.md and build guide for Claude Code sessions
 c08a288 Phase 1: fix audition/signing/#1 dates, first 3 rows sourced
 3b1af32 Phase 0: project scaffold - data schemas, starter datasets, notebooks
-```
-
-**Committed locally, push pending:** `Add CLAUDE.md and build guide for Claude Code sessions` (next action 0).
-
-**Edited locally but NOT on GitHub yet:** the 1979, 1984 and 1993 rows. Run `git status` first thing next session. If `life_events.csv` shows as modified, remove the blank lines after the 2009 row, then:
-```bash
-git add -A && git commit -m "Phase 1: source 1979, 1984, 1993 rows" && git push
 ```
 
 **Open decisions (make these before the table grows past 12 rows):**
@@ -41,8 +36,8 @@ git add -A && git commit -m "Phase 1: source 1979, 1984, 1993 rows" && git push
 3. **Age-check cell** in `notebooks/01_research_dossier.ipynb` (still empty). Short pandas exercise: flag any row where `age` isn't `year - 1958` or one less.
 
 **Next actions:**
-0. ✅ Done (2026-11-19): `CLAUDE.md` in the repo root, this guide at `docs/BUILD_GUIDE.md`, committed. Push with `git push`.
-1. Commit + push the pending 1979/1984/1993 edits (above).
+0. ✅ Done (2026-11-19): `CLAUDE.md` in the repo root, this guide at `docs/BUILD_GUIDE.md` (`6979ea9`).
+1. ✅ Done (2026-11-19): 1979/1984/1993 rows committed.
 2. Make decisions 1 and 2, apply them to all 12 rows, commit.
 3. Source the last 6 spine rows: 1958, 1964, 1978, 1982, 1988, 2009 (1964 is the hardest, see Step 1.1).
 
@@ -170,17 +165,17 @@ The original 11 rows became 12. Three starter rows had wrong years or ages: the 
 | 1969 | 10 | Signs with Motown Mar 11; brothers to LA | ✅ Pushed · High | Detroit Historical Society, Encyclopedia of Detroit: Jackson 5 |
 | 1970 | 11 | "I Want You Back" #1 Billboard Hot 100, Jan 31 | ✅ Pushed · High | Motown Classic: Jackson 5 *I Want You Back* |
 | 1978 | 20 | *The Wiz*; meets Quincy Jones | ⬜ To do | Film record; both men's accounts |
-| 1979 | 20 | *Off the Wall* released Aug 10 (age fixed from 21) | ✅ Local, not pushed · High | AllMusic: *Off the Wall* |
+| 1979 | 20 | *Off the Wall* released Aug 10 (age fixed from 21) | ✅ Pushed · High | AllMusic: *Off the Wall* |
 | 1982 | 24 | *Thriller* | ⬜ To do | Chart/sales records |
-| 1984 | 25 | Pepsi scalp burn, Jan 27; widely reported as start of painkiller use | ✅ Local, not pushed · Medium | Biography.com. Medium because the painkiller link is reported, not proven. Wording changed from "documented start" |
+| 1984 | 25 | Pepsi scalp burn, Jan 27; widely reported as start of painkiller use | ✅ Pushed · Medium | Biography.com. Medium because the painkiller link is reported, not proven. Wording changed from "documented start" |
 | 1988 | 29 | *Moonwalk* publishes his account; buys Neverland | ⬜ To do | The book itself; property records |
-| 1993 | 34 | Oprah interview, Feb 10 | ✅ Local, not pushed · High | Oprah.com: Oprah Reflects on Her Interview with Michael Jackson. High = he said it; Joseph denied the beatings |
+| 1993 | 34 | Oprah interview, Feb 10 | ✅ Pushed · High | Oprah.com: Oprah Reflects on Her Interview with Michael Jackson. High = he said it; Joseph denied the beatings |
 | 2009 | 50 | Dies June 25, 2009 (propofol; physician convicted) | ⬜ To do | Coroner's report; court record of the trial |
 
 ```bash
 # done: c08a288
 git commit -m "Phase 1: fix audition/signing/#1 dates, first 3 rows sourced"
-# pending (edits are in the file, not yet committed/pushed):
+# done:
 git add data/life_events.csv
 git commit -m "Phase 1: source 1979, 1984, 1993 rows"
 # after open decisions 1 and 2:
