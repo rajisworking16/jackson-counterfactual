@@ -3,7 +3,7 @@
 
 **Owner:** Sai Pranav Raj Kandula · **Repo:** `jackson-counterfactual` (GitHub: `rajisworking16/jackson-counterfactual`)
 **Stack:** Python (pandas, NumPy) · Streamlit · Plotly · CSV datasets
-**Last updated:** 2026-11-19 (Central) · **Where you are:** Phase 1, Step 1.1 (6 of 12 spine rows sourced)
+**Last updated:** 2026-11-20 (Central) · **Where you are:** Phases 0-4 complete; Phase 5 partly done (Steps 5.1 and 5.3 drafted). Step 5.2 (sensitivity read by 2-3 readers) is still open and is a hard stop. No v1.0 tag yet.
 **Local folder:** `~/projects/jackson-counterfactual` (Mac, VS Code) · **Branch:** `main`
 **How to use this file:** Work top to bottom. Every numbered step ends with an exact `git add` + `git commit` - run them in order and the repo history tells the whole build story. Do not skip the verification box at the end of each phase.
 **Working in Claude Code:** `CLAUDE.md` in the repo root carries the ground rules, current status and working limits, and Claude Code loads it automatically, so there's nothing to paste. This guide lives at `docs/BUILD_GUIDE.md`. Start a session with: "Read docs/BUILD_GUIDE.md and do the next step in CURRENT STATUS." Claude Code does one step, shows the diff, and stops before committing.
